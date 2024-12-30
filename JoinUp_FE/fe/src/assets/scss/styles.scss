@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+// setting
+@import "setting/resets";
+@import "setting/common";
+
+// section
+@import "section/Taxi_map/map.scss";
+@import "section/Taxi_community/community.scss";
+@import "section/Taxi_chatting/chat.scss";

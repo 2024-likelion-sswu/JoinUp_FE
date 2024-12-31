@@ -11,14 +11,14 @@
     .progress_inner_container {
         @include size(345px, 6px);
         background-color: #E8E8E8;
-        border-radius: 5px;
+        border-radius: 30px;
         overflow: hidden;
 
         .progress_bar {
             height: 100%;
             background-color: $btn_active_dark;
             transition: width 0.3s ease;
-            border-radius: 5px 0 0 5px;
+            border-radius: 30px;
         }
     }
 }

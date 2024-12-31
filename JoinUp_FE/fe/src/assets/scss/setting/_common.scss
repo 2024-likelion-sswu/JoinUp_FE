@@ -10,5 +10,23 @@ body {
     height: 812px;
     margin: 0 auto;
     font-family: 'Pretendard-Regular', dotum, sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: calc(812px - 75px);
+}
+
+.inner_container {
+    width: 100%;
+    height: calc(812px - 120px);
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.btn {
     cursor: pointer;
 }

@@ -1,0 +1,36 @@
+@import "../../setting/utils";
+@import "../../setting/variables";
+
+//btn
+#btn_container {
+    margin-top: 300px;
+    @include size(100%, 50px);
+
+    #btn_inner_container {
+        @include size(100%, 50px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .btn_box {
+            @include size(345px, 50px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 12px;
+            background: $dark_gray;
+
+            &:hover {
+                background: $btn_active_dark;
+            }
+
+            #btn_inner_box {
+                >span {
+                    font-weight: 500;
+                    color: $white;
+                    font-size: $font_size_medium;
+                }
+            }
+        }
+    }
+}

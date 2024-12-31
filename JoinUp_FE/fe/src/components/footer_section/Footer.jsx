@@ -54,7 +54,7 @@ const Footer = () => {
       <div id="footer_inner_container">
         <div id="footer_inner_box">
           {footerItems.map((item, index) => (
-            <div className={`footer_inner_item ${activeFooterIndex === index ? 'active' : ''}`} key={index}
+            <div className={`footer_inner_item btn ${activeFooterIndex === index ? 'active' : ''}`} key={index}
               onClick={() => setActiveFooterIndex(index)}>
               <div className="footer_inner_icon">
                 {item.renderSvg(activeFooterIndex === index)}

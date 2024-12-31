@@ -119,6 +119,10 @@ select {
     border: 0;
 }
 
+span {
+    cursor: default;
+}
+
 // 스킵메뉴
 #skip a {
     position: absolute;

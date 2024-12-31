@@ -1,0 +1,60 @@
+@import "../../setting/utils";
+@import "../../setting/variables";
+@import "./btn.scss";
+
+//login input
+#login_input_container {
+
+    #login_input_inner_container {
+        padding: 25px 15px;
+
+        #login_input_inner_box {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .login_input_box {
+                width: 100%;
+
+                &:not(:first-child) {
+                    padding-top: 20px;
+                }
+
+                .login_input_title {
+                    >span {
+                        font-size: $font_size_small;
+                        font-weight: 500;
+                        line-height: 18px;
+                        color: $input_black;
+                    }
+                }
+
+                .login_input_area {
+                    padding: 10px 0;
+
+                    >input {
+                        @include size(100%, 50px);
+                        border: 0.5px solid $second_light_gray;
+                        border-radius: 12px;
+                        padding: 15px;
+                        font-size: $font_size_small;
+                        
+                        &:focus {
+                            outline: 1px solid $btn_active;
+                        }
+
+                        &::placeholder {
+                            color: $second_light_gray;
+                            font-size: $font_size_small;
+                            font-weight: 500;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.login_page_container {
+    padding: 10px 0;
+}

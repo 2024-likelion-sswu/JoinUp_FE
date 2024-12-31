@@ -1,6 +1,7 @@
 @import "../../setting/utils";
 @import "../../setting/variables";
 @import "./btn.scss";
+@import "./signup.scss";
 
 //login input
 #login_input_container {
@@ -57,4 +58,24 @@
 
 .login_page_container {
     padding: 10px 0;
+
+    .login_to_signup {
+        width: 100%;
+        padding: 10px 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        a {
+            >span {
+                font-size: $font_size_small;
+                color: $light_gray;
+                border-bottom: 1px solid $light_gray;
+
+                &:hover {
+                    color: $btn_active_dark;
+                }
+            }
+        }
+    }
 }

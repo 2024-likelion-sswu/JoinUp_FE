@@ -3,8 +3,11 @@
 // setting
 @import "setting/resets";
 @import "setting/common";
+@import "setting/utils";
+@import "setting/variables";
 
 // section
 @import "section/Taxi_map/map.scss";
 @import "section/Taxi_community/community.scss";
 @import "section/Taxi_chatting/chat.scss";
+@import "section/Footer/footer.scss";

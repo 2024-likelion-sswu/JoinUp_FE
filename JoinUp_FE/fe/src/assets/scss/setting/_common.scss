@@ -7,8 +7,28 @@
 
 body {
     width: 375px;
-    height: 812px;
+    height: 100vh;
+    max-height: 812px;
     margin: 0 auto;
     font-family: 'Pretendard-Regular', dotum, sans-serif;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+}
+
+.container {
+    width: 100%;
+    height: min(calc(100vh - 75px), calc(812px - 75px));
+}
+
+.inner_container {
+    width: 100%;
+    height: min(calc(100vh - 120px), calc(812px - 120px));
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.btn {
     cursor: pointer;
 }

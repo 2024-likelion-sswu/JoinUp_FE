@@ -1,0 +1,69 @@
+@import "../../setting/utils";
+@import "../../setting/variables";
+
+//signup
+.progress_container {
+    @include size(100%, 26px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .progress_inner_container {
+        @include size(345px, 6px);
+        background-color: #E8E8E8;
+        border-radius: 30px;
+        overflow: hidden;
+
+        .progress_bar {
+            height: 100%;
+            background-color: $btn_active_dark;
+            transition: width 0.3s ease;
+            border-radius: 30px;
+        }
+    }
+}
+
+.email_auth_area {
+    display: flex;
+    position: relative;
+
+    .email_auth_btn {
+        @include size(50px, 27px);
+        border-radius: 3px;
+        background: $dark_gray;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+
+        &:hover {
+            background: $btn_active_dark;
+        }
+
+        >span {
+            color: $white;
+            font-size: 15px;
+            font-weight: 400;
+        }
+    }
+}
+
+.signup_title_container {
+    @include size(100%, 63px);
+    padding-left: 15px;
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+
+    .signup_title_box {
+        font-size: $font_size_large;
+        font-weight: 700;
+
+        >span {
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,70 @@
+.coupon-container {
+    padding: 25px 15px;
+    background-color: #fff;
+  
+    .coupon-header {
+        display: flex;
+        align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      text-align: center;
+      border-bottom: 1px solid #2121212d;
+      padding-bottom: 16px;
+
+      .back-icon {
+        font-size: 20px; /* 아이콘 크기 */
+        cursor: pointer; /* 클릭 가능 */
+        margin-right: 38%; /* 아이콘과 텍스트 사이 간격 */
+        color: #333; /* 아이콘 색상 */
+        font-weight: bold; /* '<'를 두껍게 */
+      }
+    
+      span {
+        text-align: center;
+      }
+    }
+    
+  
+    .coupon-list {
+     padding-top: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+  
+      .coupon-item {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 8px;
+        
+  
+        .discount-and-description {
+          display: flex; /* discount-rate와 description을 한 줄에 배치 */
+          align-items: center; /* 수직 중앙 정렬 */
+          gap: 10px; /* 두 요소 간 간격 */
+          margin-bottom: 5px; /* description과 expiry-date 사이 간격 */
+        }
+  
+        .discount-rate {
+          font-size: 18px;
+          font-weight: bold;
+          color: #4910FF;
+        }
+  
+        .description {
+          font-size: 18px;
+          color: #333;
+        }
+  
+        .expiry-date {
+          margin-top: 5px;
+          font-size: 12px;
+          color: #00000061;
+          border-bottom: 1px solid #2121212e;
+          padding-bottom: 20px;
+        }
+      }
+    }
+  }
+  

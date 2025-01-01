@@ -3,8 +3,8 @@ import Main from "./pages/Main";
 import Footer from "./components/footer_section/Footer";
 import LoginPage from "./pages/Login/LoginPage";
 import SignupPage from "./pages/Login/SignupPage";
-import LiveChatListPage from "./pages/Taxi_chatting/LiveChatListPage";
-import LiveChatPage from "./pages/Taxi_chatting/LiveChatPage";
+import Coupon from "./pages/Mypage/Coupon";
+import List from "./pages/Mypage/List";
 
 function App() {
   const AppContent = () => {
@@ -18,8 +18,10 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/livechat" element={<LiveChatListPage />} />
-          <Route path="/livechat/id" element={<LiveChatPage />} />
+          {/* <Route path="/livechat" element={<LiveChatListPage />} />
+          <Route path="/livechat/id" element={<LiveChatPage />} /> */}
+          <Route path="/coupon" element={<Coupon />} />
+          <Route path="/list" element={<List/>} />
         </Routes>
         {shouldShowFooter && <Footer />}
       </>

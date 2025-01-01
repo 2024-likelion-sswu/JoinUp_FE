@@ -5,6 +5,8 @@ import LoginPage from "./pages/Login/LoginPage";
 import SignupPage from "./pages/Login/SignupPage";
 
 function App() {
+  const exceptPath = ['/login', '/signup'];
+
   return (
     <div className="App">
       <BrowserRouter>
@@ -13,7 +15,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
         </Routes>
-        <Footer />
+        {!exceptPath && <Footer />}
       </BrowserRouter>
     </div>
   );

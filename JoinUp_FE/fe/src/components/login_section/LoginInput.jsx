@@ -13,7 +13,7 @@ const LoginInput = ({ inputLabel1, inputLabel2, inputType1, inputType2, placehol
                             <input type={inputType1} placeholder={placeholder1} />
                             {inputType1 === "email" && (
                                 <div className='email_auth_btn btn'>
-                                    <span>인증</span>
+                                    <span className='btn'>인증</span>
                                 </div>
                             )}
                         </div>

@@ -6,7 +6,7 @@ const Button = ({ btnTitle, onClick, currentSignupStep }) => {
             <div id="btn_inner_container">
                 <div className="btn_box btn" onClick={onClick}>
                     <div id="btn_inner_box">
-                        <span>{btnTitle}</span>
+                        <span className='btn'>{btnTitle}</span>
                     </div>
                 </div>
             </div>

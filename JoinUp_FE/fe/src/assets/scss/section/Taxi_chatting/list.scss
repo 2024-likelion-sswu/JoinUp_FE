@@ -1,0 +1,62 @@
+@import "../../setting/utils";
+@import "../../setting/variables";
+
+//chat list
+.chat_list_container {
+    @include size(100%, 90px);
+
+    .chat_list_inner_container {
+        @include size(100%, 100%);
+        border-bottom: 0.5px solid $light_gray;
+        display: flex;
+
+        .chat_list_inner_area {
+            @include size(82%, 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+
+            .chat_list_profile_box {
+                >img {
+                    @include size(60px, 60px);
+                    border-radius: 50%;
+                    border: 0.3px solid #D9D9D9;
+                }
+            }
+
+            .chat_list_content_box {
+                display: flex;
+                flex-direction: column;
+                width: 73%;
+
+                >span {
+                    font-size: 13px;
+                    font-weight: 400;
+
+                    &:first-child {
+                        font-size: 14px;
+                        margin-bottom: 5px;
+                        font-weight: 500;
+                    }
+                }
+            }
+
+
+        }
+
+        .chat_list_date_box {
+            width: 18%;
+            height: 100%;
+            display: flex;
+            align-items: end;
+            padding-right: 15px;
+
+            >span {
+                color: #7D7D7D;
+                font-size: 13px;
+                font-weight: 400;
+            }
+        }
+    }
+}

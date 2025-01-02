@@ -34,7 +34,7 @@ const Signup2 = ({ goToSignupNextStep, goToSignupPrevStep, currentSignupStep, to
                         <span>입력해주세요</span>
                     </div>
                 </div>
-                <LoginInput inputLabel1={"아이디"} inputLabel2={"비밀번호"} inputType1={"text"} inputType2={"password"} placeholder1={"아이디를 입력해주세요"} placeholder2={"비밀번호를 입력해주세요"} />
+                <LoginInput inputLabel1={"이메일"} inputLabel2={"비밀번호"} inputType1={"email"} inputType2={"password"} placeholder1={"아이디를 입력해주세요"} placeholder2={"비밀번호를 입력해주세요"} />
                 <Button btnTitle={"다음"} onClick={handleNext} currentSignupStep={currentSignupStep} />
             </div>
         </>

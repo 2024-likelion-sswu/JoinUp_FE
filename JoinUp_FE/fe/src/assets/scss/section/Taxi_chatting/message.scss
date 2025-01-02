@@ -14,8 +14,6 @@
 
         .other_message_profile {
             position: relative;
-            // display: flex;
-            // align-items: end;
             margin-right: 10px;
             width: 50px;
 
@@ -28,7 +26,7 @@
         }
 
         .chat_message_inner_box {
-            width: 60%;
+            max-width: 60%;
             position: relative;
 
             .chat_message_inner_area {

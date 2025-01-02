@@ -1,20 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { collection, addDoc, onSnapshot, query, orderBy } from "firebase/firestore";
+import { db } from "../../assets/JS/Firebase";
 import ChatMessage from '../../components/main_section/Taxi_chatting/ChatMessage'
 import Header from '../../components/header_section/Header'
 import { useNavigate } from 'react-router-dom';
 
 const LiveChatPage = () => {
+    const [messages, setMessages] = useState([]);
+    const [newMessage, setNewMessage] = useState("");
+
+    const chatCollection = collection(db, "chats");
+
+    useEffect(() => {
+        const q = query(chatCollection, orderBy("timestamp", "asc"));
+        const unsubscribe = onSnapshot(q, (snapshot) => {
+            const chatData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            setMessages(chatData);
+        });
+
+        return () => unsubscribe();
+    }, []);
+
+    const sendMessage = async () => {
+        if (newMessage.trim() === "") return;
+
+        await addDoc(chatCollection, {
+            sender: "other",
+            text: newMessage,
+            timestamp: new Date(),
+        });
+
+        setNewMessage("");
+    };
+
     const navigate = useNavigate();
 
     const handleBack = () => {
         navigate(-1);
     };
-
-    const messageList = [
-        { sender: 'me', text: '안녕하세요! 에비씨님 혹시 택시 같이 탈 수 있을까요? 지금 역까지 3분정도 남았어요' },
-        { sender: 'other', text: '안녕하세요! 00님 5분 후 뵙는거 괜찮을까요?' },
-        { sender: 'me', text: '감사합니다! 그럼 5분 후에 뵈어요 금방 가도록 하겠습니다~~' },
-    ]
 
     return (
         <div className='container'>
@@ -33,16 +56,24 @@ const LiveChatPage = () => {
                 </div>
             </div>
             <div className="chat_inner_container">
-                {messageList.map((item) => (
-                    <ChatMessage text={item.text} sender={item.sender} />
+                {messages.map((message) => (
+                    <ChatMessage key={message.id} text={message.text} sender={message.sender} />
                 ))}
             </div>
             <div id="chat_input_container">
                 <div id="chat_input_inner_container">
                     <div id="chat_input_inner_box">
-                        <input type="text" placeholder='내용을 입력해주세요.' />
+                        <input type="text" placeholder='내용을 입력해주세요.'
+                            value={newMessage}
+                            onChange={(e) => setNewMessage(e.target.value)}
+                            onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    sendMessage();
+                                }
+                            }}
+                        />
                         <div id="chat_input_icon_box">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" className='chat_input_icon btn'>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none" className='chat_input_icon btn' onClick={sendMessage}>
                                 <path d="M1 10L20 1L11 20L9 12L1 10Z" stroke="#7B7B7E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>

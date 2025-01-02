@@ -1,0 +1,101 @@
+@import "../../setting/utils";
+@import "../../setting/variables";
+
+// chat message
+.chat_message_container {
+    width: 100%;
+    position: relative;
+
+    .chat_message_inner_container {
+        width: 100%;
+        position: relative;
+        display: flex;
+        padding: 15px 20px;
+
+        .other_message_profile {
+            position: relative;
+            margin-right: 10px;
+            width: 50px;
+
+            >img {
+                @include size(50px, 50px);
+                border-radius: 50%;
+                position: absolute;
+                bottom: -5px;
+            }
+        }
+
+        .chat_message_inner_box {
+            max-width: 60%;
+            position: relative;
+
+            .chat_message_inner_area {
+                width: 100%;
+                padding: 10px;
+                border-radius: 10px;
+
+                .chat_message_text_box {
+                    display: flex;
+                    align-items: center;
+
+                    >span {
+                        font-size: 13px;
+                        font-weight: 400;
+                    }
+                }
+
+                .my_message {
+                    >span {
+                        color: $white;
+                    }
+                }
+            }
+
+            .my_message_area {
+                background: $my_message_box;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10px;
+                    right: -8px;
+                    border-width: 20px 10px 0 10px;
+                    border-style: solid;
+                    border-color: $my_message_box transparent transparent transparent;
+                    transform: rotate(-40deg);
+                }
+            }
+
+            .other_message_area {
+                background: $other_message_box;
+
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10px;
+                    left: -8px;
+                    border-width: 20px 10px 0 10px;
+                    border-style: solid;
+                    border-color: $other_message_box transparent transparent transparent;
+                    transform: rotate(40deg);
+                }
+            }
+        }
+
+        .my_message_box {
+            right: 0;
+        }
+
+        .other_message_box {
+            left: 0;
+        }
+    }
+
+    .my_message_container {
+        justify-content: end;
+    }
+
+    .other_message_container {
+        justify-content: start;
+    }
+}

@@ -5,6 +5,8 @@ import LoginPage from "./pages/Login/LoginPage";
 import SignupPage from "./pages/Login/SignupPage";
 import Coupon from "./pages/Mypage/Coupon";
 import List from "./pages/Mypage/List";
+import LineupPlus from "./pages/Lineup/Lineup_plus";
+import Home from "./pages/Lineup/Home";
 
 function App() {
   const AppContent = () => {
@@ -22,6 +24,8 @@ function App() {
           <Route path="/livechat/id" element={<LiveChatPage />} /> */}
           <Route path="/coupon" element={<Coupon />} />
           <Route path="/list" element={<List/>} />
+          <Route path="/home" element={<Home/>} />
+          <Route path="/lineup_plus" element={<LineupPlus/>} />
         </Routes>
         {shouldShowFooter && <Footer />}
       </>

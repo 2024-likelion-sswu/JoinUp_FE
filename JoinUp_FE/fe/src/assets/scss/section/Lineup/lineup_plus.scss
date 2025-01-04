@@ -1,0 +1,133 @@
+.lineup-plus-container {
+    padding: 25px 15px;
+    background-color: #fff;
+  
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 16px;
+      margin-top: 10px;
+      position: relative;
+  
+      .close-button {
+        position: absolute;
+        left: 0; /* X 버튼을 왼쪽에 배치 */
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        font-size: 25px;
+        cursor: pointer;
+      }
+  
+      span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%); /* "글쓰기" 버튼을 중앙에 배치 */
+      }
+    }
+  
+    .form {
+      .form-group {
+        margin-top: 44px;
+        margin-left: 10px;
+        width: 328px;
+  
+        label {
+          display: block;
+          font-size: 16px;
+          margin-bottom: 8px;
+          margin-left: 3px;
+          color: #333;
+        }
+  
+        input,
+        textarea {
+          width: 100%;
+          padding: 8px;
+          padding-right: 40px; /* 아이콘을 위한 공간 */
+          font-size: 14px;
+          border: 1px solid #B2B2B4;
+          border-radius: 10px;
+          position: relative;
+  
+          &:focus {
+            outline: none;
+            border-color: #888;
+          }
+        }
+  
+        textarea {
+          resize: none;
+          height: 130px;
+          padding-right: 40px; /* 카메라 아이콘 공간 확보 */
+        }
+  
+        .camera-icon {
+          position: absolute;
+          top: 320px;
+          right: 460px; /* 입력 박스 안쪽에 아이콘 배치 */
+          transform: translateY(-50%);
+          font-size: 18px;
+          color: #888;
+          cursor: pointer;
+        }
+      }
+  
+      .form-group-row {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 20px;
+  
+        .location-input {
+          width: 226px; /* 위치 입력 칸을 더 넓게 */
+          display: flex;
+          position: relative;
+  
+          input {
+            flex: 1;
+            padding-right: 40px; /* 돋보기 아이콘 공간 */
+          }
+  
+          .search-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px; /* 입력 박스 안쪽에 돋보기 배치 */
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #8F6CFF;
+            cursor: pointer;
+          }
+        }
+  
+        .members-input {
+          width: 83px; /* 인원수 입력 칸을 좁게 */
+        }
+      }
+  
+      .upload-button {
+        width: 328px;
+        height: 48px;
+        padding: 10px 16px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background: #888;
+        border: none;
+        border-radius: 12px;
+        cursor: pointer;
+        margin-left: 10px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+  
+        &:hover {
+          background: #8F6CFF;
+        }
+      }
+    }
+  }
+  

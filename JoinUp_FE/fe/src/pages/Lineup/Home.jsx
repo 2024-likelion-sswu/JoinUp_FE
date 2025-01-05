@@ -92,6 +92,7 @@ const Home = () => {
                                 <div className="role-username">
                                     <p className="role">{item.role}</p>
                                     <p className="username">{item.username}</p>
+                                    <button className="chat-button">채팅하기</button>
                                 </div>
                             </div>
                             <div className="location-wrapper">

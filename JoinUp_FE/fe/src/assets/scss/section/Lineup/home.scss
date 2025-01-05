@@ -7,19 +7,20 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 10px;
-    
+
         h2 {
             font-size: 18px;
             font-weight: bold;
             margin: 0;
         }
-    
+
         .add-icon {
             font-size: 13px;
             color: #000;
             cursor: pointer;
         }
     }
+
     .header {
         display: flex;
         justify-content: space-between;
@@ -77,28 +78,17 @@
 
         .queue-list {
             display: flex;
-            overflow-x: auto;
+            overflow-x: scroll;
             /* 가로 스크롤 활성화 */
             gap: 15px;
             white-space: nowrap;
             /* 줄바꿈 방지 */
             padding-bottom: 10px;
-
             &::-webkit-scrollbar {
-                height: 8px;
-                /* 스크롤바 높이 */
-            }
+                display: none;
+              }
 
-            &::-webkit-scrollbar-thumb {
-                background: #af97ff;
-                /* 스크롤바 색상 */
-                border-radius: 10px;
-            }
 
-            &::-webkit-scrollbar-track {
-                background: #f0f0f0;
-                /* 스크롤바 트랙 색상 */
-            }
 
             .queue-card {
                 flex-shrink: 0;
@@ -158,6 +148,20 @@
                     align-items: center;
                     margin: 10px 0;
 
+                    .chat-button {
+                        margin-left: 90px;
+                        width: 55px;
+                        height: 18px;
+                        font-size: 11px;
+                        font-weight: 500;
+                        color: #000000;
+                        background: #ffffff;
+                        border: none;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        box-shadow: 0 2px 4px rgba(0.1, 0, 0, 0.1);
+                    }
+
                     .circle {
                         width: 50px;
                         height: 50px;
@@ -203,12 +207,12 @@
                         display: flex;
                         align-items: center;
                         justify-content: space-between;
-                    
+
                         .location {
                             font-size: 14px;
                             color: #333333;
                         }
-                    
+
                         .chevron-icon {
                             font-size: 12px;
                             color: #A5A5A5;
@@ -280,30 +284,30 @@
                     cursor: pointer;
                     box-shadow: 0 2px 4px rgba(0.1, 0, 0, 0.1);
 
-                    &:hover {
-                        background: #4a7cd8;
-                    }
+                    // &:hover {
+                    //     background: #4a7cd8;
+                    // }
                 }
             }
         }
 
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 15px;
+        // .pagination {
+        //     display: flex;
+        //     justify-content: center;
+        //     margin-top: 15px;
 
-            .dot {
-                width: 8px;
-                height: 8px;
-                margin: 0 5px;
-                background: #ccc;
-                border-radius: 50%;
+        //     .dot {
+        //         width: 8px;
+        //         height: 8px;
+        //         margin: 0 5px;
+        //         background: #ccc;
+        //         border-radius: 50%;
 
-                &.active {
-                    background: #5a8dee;
-                }
-            }
-        }
+        //         &.active {
+        //             background: #5a8dee;
+        //         }
+        //     }
+        // }
     }
 
     .taxi-section {

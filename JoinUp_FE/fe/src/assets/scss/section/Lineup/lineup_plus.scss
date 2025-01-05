@@ -33,10 +33,12 @@
   
     .form {
       .form-group {
+        position: relative;
         margin-top: 44px;
         margin-left: 10px;
         width: 328px;
   
+        
         label {
           display: block;
           font-size: 16px;
@@ -69,8 +71,8 @@
   
         .camera-icon {
           position: absolute;
-          top: 320px;
-          right: 460px; /* 입력 박스 안쪽에 아이콘 배치 */
+          top: 140px;
+          right: 20px; /* 입력 박스 안쪽에 아이콘 배치 */
           transform: translateY(-50%);
           font-size: 18px;
           color: #888;
@@ -93,10 +95,10 @@
             padding-right: 40px; /* 돋보기 아이콘 공간 */
           }
   
-          .search-icon {
+          .search-button {
             position: absolute;
+            right:10px;
             top: 50%;
-            right: 10px; /* 입력 박스 안쪽에 돋보기 배치 */
             transform: translateY(-50%);
             font-size: 18px;
             color: #8F6CFF;
@@ -108,7 +110,27 @@
           width: 83px; /* 인원수 입력 칸을 좁게 */
         }
       }
-  
+      .time-select-container {
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 8px;
+      }
+      
+      .time-select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+      
+      .time-info {
+        color: #888;
+        font-size: 12px;
+        margin: 0;
+      }
       .upload-button {
         width: 328px;
         height: 48px;

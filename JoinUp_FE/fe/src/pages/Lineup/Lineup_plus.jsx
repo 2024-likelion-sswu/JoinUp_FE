@@ -7,6 +7,7 @@ const LineupPlus = () => {
   const [content, setContent] = useState("");
   const [location, setLocation] = useState("");
   const [members, setMembers] = useState("");
+  const [time, setTime] = useState(5);
 
   const handleUpload = () => {
     // 업로드 로직 추가
@@ -52,9 +53,9 @@ const LineupPlus = () => {
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />
-              <button className="search-button">
+              <div className="search-button">
                 <FaSearch /> {/* 돋보기 아이콘 추가 */}
-              </button>
+              </div>
             </div>
           </div>
           <div className="form-group">
@@ -68,6 +69,24 @@ const LineupPlus = () => {
             />
           </div>
         </div>
+        <label htmlFor="time">시간설정</label>
+        <div className="time-select-container">
+          <select
+            id="time"
+            value={time}
+            onChange={(e) => setTime(Number(e.target.value))}
+            className="time-select"
+          >
+            {Array.from({ length: 12 }, (_, i) => 5 + i * 5).map((val) => (
+              <option key={val} value={val}>
+                {val}분
+              </option>
+            ))}
+          </select>
+          <p className="time-info">
+            최소 5분에서 최대 60분까지 설정 가능합니다.
+          </p>
+        </div>
         <button className="upload-button" onClick={handleUpload}>
           업로드
         </button>
@@ -75,5 +94,4 @@ const LineupPlus = () => {
     </div>
   );
 };
-
 export default LineupPlus;

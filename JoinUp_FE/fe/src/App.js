@@ -3,8 +3,6 @@ import Main from "./pages/Main";
 import Footer from "./components/footer_section/Footer";
 import LoginPage from "./pages/Login/LoginPage";
 import SignupPage from "./pages/Login/SignupPage";
-import LiveChatListPage from "./pages/Taxi_chatting/LiveChatListPage";
-import LiveChatPage from "./pages/Taxi_chatting/LiveChatPage";
 import MyPage from './pages/MyPage/MyPage'
 import MyEdit from "./pages/MyPage/MyEdit";
 import Post from './pages/Posting/Post'
@@ -23,8 +21,8 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/livechat" element={<LiveChatListPage />} />
-          <Route path="/livechat/id" element={<LiveChatPage />} />
+          {/* <Route path="/livechat" element={<LiveChatListPage />} />
+          <Route path="/livechat/id" element={<LiveChatPage />} /> */}
           <Route path="/mypage" element={<MyPage/> } />
           <Route path="/myedit" element={<MyEdit/>}/>
           <Route path="/post" element={<Post/>}/>

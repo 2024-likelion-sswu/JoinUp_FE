@@ -39,6 +39,7 @@
             padding: 4%;
             font-size: 14px;
         }
+
     }
 
     // 게시글 본문
@@ -63,13 +64,21 @@
             font-size: 14px;
             resize: none;
         }
-        .PostingBox3 {
-            width: 22px;
-            height: 18px;
-            position: absolute;
-            right: 16%;
-            bottom: 10%;
-        }
+        .file-input {
+            display: none;
+          }
+          .file-label {
+            cursor: pointer;
+            
+            .PostingBox3 {
+                width: 22px;
+                height: 18px;
+                position: absolute;
+                right: 16%;
+                bottom: 10%;
+            }
+          }
+
     }
     // 업로드
     .MyEdBtn {

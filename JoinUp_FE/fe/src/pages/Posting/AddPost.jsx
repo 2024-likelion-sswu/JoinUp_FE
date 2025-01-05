@@ -21,7 +21,10 @@ const AddPost = () => {
         <div className='PostingBox'>
             <div className='PostingBox1'>본문</div>
             <textarea className='PostingBox2'></textarea>
-            <img src={Camera} className='PostingBox3'></img>
+            <input type="file" id="file-input" className='file-input' />
+            <label htmlFor="file-input" className='file-label'>
+                <img src={Camera} alt="Upload" className='PostingBox3' />
+            </label>
         </div>
         <div className='MyEdBtn'>업로드</div>
     </div>

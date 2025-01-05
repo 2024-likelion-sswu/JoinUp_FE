@@ -1,0 +1,86 @@
+.AddPostContainer {
+    width: 100%;
+    height: 730px;
+    .AddPTitle {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        margin-bottom: 5%;
+        .AddPDelete {
+            font-size: 16px;
+            color: #7B7B7E;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 5%;
+            cursor: pointer;
+        }
+        .AddPTitle1 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-left: 27%;
+            margin-top: 5%;
+        }
+    }
+    // 게시글 제목
+    .PostTitleBox {
+        width: 100%;
+        .PostTitleBox1 {
+            margin-left: 9%;
+            margin-top: 2%;
+            margin-bottom: 2%;
+        }
+        .PostTitleBox2 {
+            margin-left: 8%;
+            margin-top: 1%;
+            margin-bottom: 2%;  
+            width: 80%;
+            border-radius: 12px;
+            border: 0.5px solid #B2B2B4;
+            padding: 4%;
+            font-size: 14px;
+        }
+    }
+
+    // 게시글 본문
+    .PostingBox {
+        width: 100%;
+        margin-top: 10%;
+        position: relative;
+        .PostingBox1 {
+            margin-left: 9%;
+            margin-top: 2%;
+            margin-bottom: 2%;
+        }
+        .PostingBox2 {
+            height: 180px;
+            margin-left: 8%;
+            margin-top: 1%;
+            margin-bottom: 2%;  
+            width: 80%;
+            border-radius: 12px;
+            border: 0.5px solid #B2B2B4;
+            padding: 4%;
+            font-size: 14px;
+            resize: none;
+        }
+        .PostingBox3 {
+            width: 22px;
+            height: 18px;
+            position: absolute;
+            right: 16%;
+            bottom: 10%;
+        }
+    }
+    // 업로드
+    .MyEdBtn {
+        margin-top: 10%;
+        background-color: #7B7B7E;
+        border-radius: 12px;
+        width: 82%;
+        padding: 3%;
+        text-align: center;
+        margin-left: 8%;
+        margin-bottom: 40%;
+        color: #fff;
+    }
+}

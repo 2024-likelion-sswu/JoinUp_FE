@@ -1,0 +1,89 @@
+.MyEditContainer {
+    width: 100%;
+    height: 100%;
+    .MyEdTitle {
+        width: 100%;
+        height: 20%;
+        display: flex;
+        margin-bottom: 5%;
+        .MyEdDelete {
+            font-size: 16px;
+            color: #7B7B7E;
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 5%;
+            cursor: pointer;
+        }
+        .MyEdTitle1 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-left: 17.2%;
+            margin-top: 5%;
+        }
+    }
+    // 프로필이미지 수정
+    .MyEdImgBox {
+        width: 100%;
+        .MyEdImg {
+            width: 30%;
+            height: 30%;
+            margin-top: 15%;
+            margin-bottom: 20%;
+            margin-left: 35%;
+        }
+        .MyEdImgBtn {
+
+        }
+    }
+    // 이름,생년월일 수정 
+    .MyEdNameBox {
+        width: 100%;
+        .MyEdName1 {
+            margin-left: 8%;
+            margin-top: 2%;
+            font-size: 14px;
+        }
+        .MyEdName2 {
+            margin-left: 8%;
+            margin-top: 1%;
+            margin-bottom: 2%;  
+            width: 80%;
+            border-radius: 12px;
+            border: 0.5px solid #B2B2B4;
+            padding: 4%;
+            font-size: 14px;
+        }
+    }
+
+    .MyEdBirthBox {
+        width: 100%;
+        margin-bottom: 30%;
+        .MyEdBirth1 {
+            margin-left: 8%;
+            margin-top: 2%;
+            font-size: 14px;
+        }
+        .MyEdBirth2 {
+            margin-left: 8%;
+            margin-top: 1%;
+            margin-bottom: 2%;  
+            width: 80%;
+            border-radius: 12px;
+            border: 0.5px solid #B2B2B4;
+            padding: 4%;
+            font-size: 14px;
+        }
+    }
+    // 수정버튼
+    .MyEdBtn {
+        background-color: #7B7B7E;
+        border-radius: 12px;
+        width: 82%;
+        padding: 4%;
+        text-align: center;
+        margin-left: 8%;
+        margin-bottom: 40%;
+        color: #fff;
+        cursor: pointer;
+    }
+}

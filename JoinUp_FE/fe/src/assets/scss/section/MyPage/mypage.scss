@@ -1,0 +1,257 @@
+.MyPageContainer {
+    width: 100%;
+    height: 730px;
+    .MypageHd {
+        width: 100%;
+        height: 8%;
+        display: flex;
+        .BackBtnImg {
+            width: 8px;
+            height: 16px;
+            margin-left: 4%;
+            margin-top: 6%;
+        }
+        .MyPageTitle {
+            margin-left: 37%;
+            margin-top: 6%;
+            font-weight: bold;
+        }
+        
+    }
+    .Line {
+        width: 100%;
+        height: 1px; 
+        margin-top: 10px; 
+        background-color: rgba(33, 33, 33, 0.08);
+    }
+    .AccountContainer {
+        display: flex;
+        .UserIcon {
+            width: 86px;
+            height: 86px;
+            margin: 5%;
+        }
+        .UserInfoBox {
+            margin: 3%;
+            .UserName {
+                margin-top: 10%;
+                margin-bottom: 2%;
+            }
+            .UserEmail {
+                margin-bottom: 5%;
+                font-size: smaller;
+            }
+            .UserInfoBtn {
+                margin-top: 2%;
+                display: flex;
+                justify-content: space-between;
+                .UserInfoEditer {
+                    padding: 4%;
+                    border-radius: 3px;
+                    background-color: white;
+                    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.10);
+                    font-size: 13px;
+                    cursor: pointer;
+                }
+                .UserInfoLogout {
+                    padding: 4%;
+                    border-radius: 3px;
+                    background-color: white;
+                    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.10);
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+
+    .PayContainer {
+        display: flex;
+        flex-direction: column;
+        margin: 10%;
+        margin-top: 2%;
+        .TotalPayBox {
+            margin-top: 8%;
+            margin-bottom: 10%;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 500;
+            letter-spacing: 0.4px;
+            .TotalPayText {
+                color: #4C2AB5;
+                font-size: 20px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 16px; 
+                letter-spacing: 0.4px;
+                margin-top: 0.5%;
+                margin-bottom: 1%;
+            }
+        }
+        .PointBox {
+            width: 100%;
+            height: 54px;
+            display: flex;
+            border-radius: 10px;
+            align-items: center;
+            background: #FFF;
+            box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.10);
+            padding: 5%;
+            .PointBox1 {
+                width: 20%;
+                font-size: 17px;
+                font-style: normal;
+                font-weight: 400;
+                letter-spacing: 0.4px;
+            }
+            .PointBox2 {
+                display: flex;
+                align-items: center;
+                gap: 8%;
+                width: 80%;
+                height: 50%;
+                margin-left: 15%;
+                .NowPoint {
+                    width: 60%;
+                    height: 27px;
+                    border-radius: 3px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: right;
+                    background: #E7E7E7;
+                    color: #717171;
+                    padding-right: 3px;
+                    font-size: smaller;
+                    text-align: right; 
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: 16px; /* 114.286% */
+                    letter-spacing: 0.4px;
+                }
+                .ChargeBtn {
+                    width: 30%;
+                    height: 27px;
+                    background: rgba(76, 42, 181, 0.90);
+                    border-radius: 3px;
+                    color: #fff;
+                    font-size: 15px;
+                    font-weight: 400;
+                    line-height: 16px; /* 106.667% */
+                    letter-spacing: 0.4px;
+                    padding: 3%;
+                }
+            }
+        }
+        .PaymentsBox {
+            width: 100%;
+            height: 137px;
+            margin-top: 10%;
+            display: flex;
+            .KakaoPayBox {
+                width: 67%;
+                height: 100%;
+                border-radius: 10px;
+                background: #FFF;
+                box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.10);
+                .Kakao1 {
+                    width: 100%;
+                    height: 60%;
+                    .KakaoImg {
+                        width: 185px;
+                        height: 73px;
+                        background-color: #FCEC4E;
+                        margin-top: 5%;
+                        margin-left: 5%;
+                        border-radius: 10px;
+                        .KakaoPayImg {
+                            display: flex;
+                            width: 40%;
+                            height: 20px;
+                            margin-top: 5%;
+                            margin-left: 5%;
+                            margin-bottom: 15%;
+                            .PayImg {
+                                width: 16px;
+                                height: 14px;
+                                margin-top: 10%;
+                            }
+                            .Paytxt {
+                                font-size: 15px;
+                                font-style: normal;
+                                font-weight: 600;
+                                line-height: 16px; /* 106.667% */
+                                letter-spacing: 0.4px;
+                                margin-top: 10%;
+                                margin-left: 7%;
+                            }
+                        }
+                        .NowPayMn {
+                            display: flex;
+                            .NowPayMn1 {
+                                width: 100%;
+                                margin-left: 7%;
+                                margin-right: 22%;
+                                font-size: 11px;
+                                color: #717171;
+                            }
+                            .NowPayMn2 {
+                                width: 100%;
+                                font-size: 13px;
+                                margin-right: 2%;
+                            }
+                        }
+                    }
+                }
+                .Kakao2 {
+                    width: 100%;
+                    height: 30%;    
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    padding-bottom: 10px;
+                }
+            }
+            .CouponBox {
+                width: 30%;
+                height: 100%;
+                margin-left: 4%;
+                border-radius: 10px;
+                background: #FFF;
+                box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.10);
+                .CpBox1 {
+                    width: 100%;
+                    height: 67.3%;
+                    .CpBImg {
+                        margin-left: 30%;
+                        margin-top: 30%;
+                        margin-bottom: 30%;
+                        width: 40%;
+                        height: 40%;
+                    }
+                }
+                .CpBox2 {
+                    text-align: center;
+                    width: 100%;
+                    height: 20%;
+                    text-align: center;
+                    margin-top: 2%;
+                    padding: 5%;
+                }
+            }
+        }
+    }
+    .PayList {
+        height: 54px;
+        margin-top: 1%;
+        margin-left: 10%;
+        display: flex;
+        align-items: center;
+        .PayList1 {
+            width: 6px;
+            height: 12px;
+            margin-left: 3%;
+            margin-top: 1%;
+            transform: rotate(180deg);
+        }
+    }
+}

@@ -3,8 +3,8 @@ import Main from "./pages/Main";
 import Footer from "./components/footer_section/Footer";
 import LoginPage from "./pages/Login/LoginPage";
 import SignupPage from "./pages/Login/SignupPage";
-import Coupon from "./pages/Mypage/Coupon";
-import List from "./pages/Mypage/List";
+import Coupon from "./pages/MyPage/Coupon";
+import List from "./pages/MyPage/List";
 import LineupPlus from "./pages/Lineup/Lineup_plus";
 import Home from "./pages/Lineup/Home";
 import Home_map from "./pages/Lineup/Home_map";
@@ -13,6 +13,8 @@ import MyEdit from "./pages/MyPage/MyEdit";
 import Post from './pages/Posting/Post'
 import AddPost from './pages/Posting/AddPost'
 import Community from "./pages/Community/Community";
+import LiveChatListPage from "./pages/Taxi_chatting/LiveChatListPage";
+import LiveChatPage from "./pages/Taxi_chatting/LiveChatPage";
 
 function App() {
   const AppContent = () => {

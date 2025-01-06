@@ -1,0 +1,119 @@
+@import "../../setting/utils";
+@import "../../setting/variables";
+@import "./message.scss";
+@import "./list.scss";
+
+// chatting
+#chat_notice_container {
+    @include size(100%, 50px);
+
+    #chat_notice_inner_container {
+        @include size(100%, 100%);
+        background: $gray;
+        padding: 15px 20px;
+        display: flex;
+
+        #chat_notice_icon_box {
+            display: flex;
+            align-items: center;
+
+            .chat_notice_icon {
+                @include size(20px, 15px);
+            }
+        }
+
+        #chat_notice_text_box {
+            padding-left: 15px;
+
+            >span {
+                font-size: $font_size_small;
+                font-weight: 400;
+            }
+        }
+    }
+}
+
+#chat_input_container {
+    @include size(100%, 80px);
+
+    #chat_input_inner_container {
+        @include size(100%, 100%);
+        padding: 15px;
+
+        #chat_input_inner_box {
+            @include size(100%, 50px);
+            display: flex;
+            position: relative;
+
+            >input {
+                width: 100%;
+                border: 0.5px solid $light_gray;
+                border-radius: 10px;
+                padding: 10px;
+                font-size: $font_size_small;
+
+                &::placeholder {
+                    color: $light_gray;
+                    font-weight: 400;
+                }
+
+                &:focus {
+                    outline: 1px solid $btn_active;
+                }
+            }
+
+            #chat_input_icon_box {
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                align-items: center;
+
+                .chat_input_icon {
+                    &:hover {
+                        >path {
+                            stroke: $btn_active;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.chat_inner_container {
+    width: 100%;
+    height: min(calc(100vh - 250px), calc(812px - 250px));
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+//chat list
+#chat_list_pg_title_conatiner {
+    width: 100%;
+
+    #chat_list_pg_title_inner_container {
+        width: 100%;
+        padding-left: 15px;
+        margin-top: 50px;
+
+        >span {
+            font-size: 18px;
+            font-weight: 500;
+        }
+    }
+}
+
+.chat_list_pg_inner_conatiner {
+    width: 100%;
+    height: min(calc(100vh - 190px), calc(812px - 190px));
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}

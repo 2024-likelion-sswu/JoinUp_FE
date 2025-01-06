@@ -1,5 +1,5 @@
 import React from "react";
-import "../../assets/scss/section/Mypage/coupon.scss";
+import "../../assets/scss/section/MyPage/coupon.scss";
 
 const Coupon = () => {
     const handleBack = () => {

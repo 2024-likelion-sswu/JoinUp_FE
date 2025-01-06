@@ -1,5 +1,5 @@
 import React from 'react'
-import "../../assets/scss/section/Mypage/list.scss";
+import "../../assets/scss/section/MyPage/list.scss";
 
 const List = () => {
     const handleBack = () => {

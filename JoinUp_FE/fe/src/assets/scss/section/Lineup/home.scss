@@ -1,0 +1,373 @@
+.home-container {
+    padding: 25px 15px;
+    background-color: #fff;
+
+    .section-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+
+        h2 {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .add-icon {
+            font-size: 13px;
+            color: #000;
+            cursor: pointer;
+        }
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .location-info {
+            display: flex;
+            align-items: center;
+
+            .send-icon {
+                font-size: 18px;
+                color: #9A60D3;
+                margin-right: 10px;
+            }
+
+            .location-text {
+                display: flex;
+                /* 요소들을 가로로 배치 */
+                align-items: center;
+                /* 요소들을 세로로 정렬 */
+                gap: 10px;
+                /* h1과 p 사이 간격 */
+
+                h1 {
+                    font-size: 16px;
+                    font-weight: 300;
+                    margin: 0;
+                }
+
+                p {
+                    font-size: 14px;
+                    color: #333333;
+                    margin: 0;
+                }
+            }
+        }
+
+        .bell-icon {
+            font-size: 20px;
+            color: #B69FFF;
+            cursor: pointer;
+        }
+    }
+
+    .queue-section {
+        margin-bottom: 30px;
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            margin-left: 5px;
+            font-weight: 600;
+        }
+
+        .queue-list {
+            display: flex;
+            overflow-x: scroll;
+            /* 가로 스크롤 활성화 */
+            gap: 15px;
+            white-space: nowrap;
+            /* 줄바꿈 방지 */
+            padding-bottom: 10px;
+            &::-webkit-scrollbar {
+                display: none;
+              }
+
+
+
+            .queue-card {
+                flex-shrink: 0;
+                background: #af97ff15;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                padding: 15px;
+                width: 236px;
+                height: 268px;
+                transition: background-color 0.3s ease;
+
+                &.active {
+                    background: #af97ff2d;
+                    /* 모집중 상태 색상 */
+                }
+
+                &.completed {
+                    background: #bdb9c82d;
+                    /* 모집완료 상태 색상 */
+                }
+
+                .status-time {
+                    display: flex;
+                    /* 가로로 배치 */
+                    align-items: center;
+                    /* 세로로 중앙 정렬 */
+                    color: #8F8F8F;
+
+                    .time {
+                        margin-left: 10px;
+                        margin-bottom: 3px;
+                    }
+
+                    .status {
+                        display: inline-block;
+                        padding: 4px 8px;
+                        border-radius: 12px;
+                        font-size: 12px;
+                        font-weight: 400;
+                        color: #000;
+                        background-color: #fff;
+
+                        // &.completed {
+                        // //   background: #aaa;
+                        // }
+                    }
+                }
+
+                .time {
+                    font-size: 12px;
+                    color: #666;
+                    margin-top: 5px;
+                }
+
+                .role-wrapper {
+                    display: flex;
+                    align-items: center;
+                    margin: 10px 0;
+
+                    .chat-button {
+                        margin-left: 90px;
+                        width: 55px;
+                        height: 18px;
+                        font-size: 11px;
+                        font-weight: 500;
+                        color: #000000;
+                        background: #ffffff;
+                        border: none;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        box-shadow: 0 2px 4px rgba(0.1, 0, 0, 0.1);
+                    }
+
+                    .circle {
+                        width: 50px;
+                        height: 50px;
+                        background: #fff;
+                        border-radius: 50%;
+                        margin-right: 10px;
+                    }
+
+                    .role-username {
+                        display: flex;
+                        flex-direction: column;
+                        /* 위아래로 배치 */
+                        align-items: flex-start;
+
+                        .role {
+                            font-size: 13px;
+                            font-weight: 400;
+                            margin: 0;
+                            /* 기본 여백 제거 */
+                        }
+
+                        .username {
+                            font-size: 11px;
+                            color: #888;
+                            margin: 0;
+                            /* 기본 여백 제거 */
+                            margin-top: 2px;
+                        }
+                    }
+                }
+
+                .location-wrapper {
+                    margin-bottom: 15px;
+
+                    .label {
+                        font-size: 14px;
+                        font-weight: bold;
+                        margin-bottom: 5px;
+                        color: #000000;
+                    }
+
+                    .location-row {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+
+                        .location {
+                            font-size: 14px;
+                            color: #333333;
+                        }
+
+                        .chevron-icon {
+                            font-size: 12px;
+                            color: #A5A5A5;
+                            margin-right: 85px;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .info-group {
+                    margin-top: 15px;
+                    padding-top: 10px;
+                    border-top: 1px solid #fff;
+
+                    .members-wrapper {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        margin-bottom: 10px;
+
+                        .label {
+                            font-size: 14px;
+                            color: #000;
+                            font-weight: 600;
+                            margin-bottom: 5px;
+                        }
+
+                        .icon-count {
+                            display: flex;
+                            align-items: center;
+
+                            .person-icon {
+                                font-size: 15px;
+                                color: #333333;
+                                margin-right: 4px;
+                            }
+
+                            .count {
+                                font-size: 13px;
+                                font-weight: 500;
+                                color: #333;
+                            }
+                        }
+                    }
+
+                    .tags {
+                        font-size: 11px;
+                        color: #474747;
+                        margin-bottom: 5px;
+                    }
+
+                    .date {
+                        font-size: 10px;
+                        color: #616161;
+                    }
+                }
+
+                .line-button {
+                    margin-bottom: 3px;
+                    margin-left: 110px;
+                    width: 55px;
+                    height: 18px;
+                    font-size: 11px;
+                    font-weight: 500;
+                    color: #000000;
+                    background: #ffffff;
+                    border: none;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    box-shadow: 0 2px 4px rgba(0.1, 0, 0, 0.1);
+
+                    // &:hover {
+                    //     background: #4a7cd8;
+                    // }
+                }
+            }
+        }
+
+        // .pagination {
+        //     display: flex;
+        //     justify-content: center;
+        //     margin-top: 15px;
+
+        //     .dot {
+        //         width: 8px;
+        //         height: 8px;
+        //         margin: 0 5px;
+        //         background: #ccc;
+        //         border-radius: 50%;
+
+        //         &.active {
+        //             background: #5a8dee;
+        //         }
+        //     }
+        // }
+    }
+
+    .taxi-section {
+        h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .taxi-list {
+            list-style: none;
+            padding: 0;
+
+            .taxi-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                background: #fff;
+                padding: 10px 15px;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                margin-bottom: 10px;
+
+                .heart-button {
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    padding: 0;
+
+                    .heart-icon {
+                        font-size: 20px;
+                        margin-top: 3px;
+                        color: #B097FF;
+
+                        &.liked {
+                            color: #B097FF;
+                        }
+                    }
+                }
+
+                span {
+                    flex-grow: 1;
+                    font-size: 14px;
+                    font-weight: bold;
+                    margin-left: 10px;
+                }
+
+                .view-button {
+                    font-size: 10px;
+                    padding: 4px 8px;
+                    color: #000;
+                    background: #F0F0F0;
+                    border-radius: 3px;
+                    border: none;
+                    cursor: pointer;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}

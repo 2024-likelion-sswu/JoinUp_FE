@@ -1,0 +1,56 @@
+.home-map-container {
+    padding: 25px 15px;
+    background-color: #fff;
+  }
+  
+  .map-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .location-info {
+        display: flex;
+        align-items: center;
+
+        .send-icon {
+            font-size: 18px;
+            color: #9A60D3;
+            margin-right: 10px;
+        }
+
+        .location-text {
+            display: flex;
+            /* 요소들을 가로로 배치 */
+            align-items: center;
+            /* 요소들을 세로로 정렬 */
+            gap: 10px;
+            /* h1과 p 사이 간격 */
+
+            h1 {
+                font-size: 16px;
+                font-weight: 300;
+                margin: 0;
+            }
+
+            p {
+                font-size: 14px;
+                color: #333333;
+                margin: 0;
+            }
+        }
+    }
+    .bell-icon {
+        font-size: 20px;
+        color: #B69FFF;
+        cursor: pointer;
+    }
+    .map {
+        width: 100%;
+        height: 100%;
+      }
+}
+
+  
+ 
+  

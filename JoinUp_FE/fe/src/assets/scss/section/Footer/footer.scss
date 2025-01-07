@@ -9,6 +9,8 @@
 
 #footer_container {
     @include size(100%, 75px);
+    position: relative;
+    z-index: 10;
 
     #footer_inner_container {
         @include size(100%, 75px);

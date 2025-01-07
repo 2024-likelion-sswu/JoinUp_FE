@@ -15,18 +15,20 @@ import AddPost from './pages/Posting/AddPost'
 import Community from "./pages/Community/Community";
 import LiveChatListPage from "./pages/Taxi_chatting/LiveChatListPage";
 import LiveChatPage from "./pages/Taxi_chatting/LiveChatPage";
+import LandingPage from "./pages/Landing/LandingPage";
 
 function App() {
   const AppContent = () => {
     const location = useLocation();
-    const exceptPath = ['/login', '/signup'];
+    const exceptPath = ['/login', '/signup', '/'];
     const shouldShowFooter = !exceptPath.includes(location.pathname);
 
     return (
       <>
         <Routes>
           {/* 기본 경로 "/"를 "/home"으로 리다이렉트 */}
-          <Route path="/" element={<Navigate to="/home" />} />
+          <Route path="/" element={<LandingPage />} />
+          {/* <Route path="/" element={<Navigate to="/home" />} /> */}
           <Route path="/home" element={<Home />} />
           <Route path="/home_map" element={<Home_map />} />
           <Route path="/login" element={<LoginPage />} />

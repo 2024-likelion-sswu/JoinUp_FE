@@ -1,0 +1,53 @@
+@import "../../setting/utils";
+@import "../../setting/variables";
+
+// landing
+#landing_container {
+    @include size(100%, 100vh);
+    max-height: 812px;
+
+    #landing_inner_container {
+        @include size(100%, 100%);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        #landing_inner_content_container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            #landing_inner_logo_box {
+                @include size(154px, 135px);
+                margin-bottom: 25px;
+            }
+
+            #landing_inner_text_box {
+                font-size: $font_size_large;
+                font-weight: 500;
+
+                >span {
+                    display: inline-block;
+                    animation: wave 3s ease-in-out infinite;
+                    transform: translateY(5px);
+                }
+            }
+        }
+    }
+}
+
+@keyframes wave {
+    0% {
+        transform: translateY(5px);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(5px);
+    }
+}

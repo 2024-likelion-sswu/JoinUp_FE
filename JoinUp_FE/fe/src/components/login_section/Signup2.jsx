@@ -3,8 +3,8 @@ import Header from '../header_section/Header';
 import LoginInput from './LoginInput';
 import Button from './Button';
 
-const Signup2 = ({ goToSignupNextStep, goToSignupPrevStep, currentSignupStep, totalSignupSteps }) => {
-    const [id, setId] = useState('');
+const Signup2 = ({ goToSignupNextStep, goToSignupPrevStep, currentSignupStep, totalSignupSteps, signupDataFromPreviousSteps }) => {
+    const [id, setId] = useState(signupDataFromPreviousSteps.email || '');
     const [password, setPassword] = useState('');
     const progressPercentage = (currentSignupStep / totalSignupSteps) * 100;
 
@@ -34,7 +34,18 @@ const Signup2 = ({ goToSignupNextStep, goToSignupPrevStep, currentSignupStep, to
                         <span>입력해주세요</span>
                     </div>
                 </div>
-                <LoginInput inputLabel1={"이메일"} inputLabel2={"비밀번호"} inputType1={"email"} inputType2={"password"} placeholder1={"이메일을 입력해주세요"} placeholder2={"비밀번호를 입력해주세요"} />
+                <LoginInput
+                    inputLabel1={"이메일"}
+                    inputLabel2={"비밀번호"}
+                    inputType1={"email"}
+                    inputType2={"password"}
+                    placeholder1={"이메일을 입력해주세요"}
+                    placeholder2={"비밀번호를 입력해주세요"}
+                    value1={signupDataFromPreviousSteps.email}
+                    readOnly={true}
+                    onChange1={(e) => setId(e.target.value)}
+                    onChange2={(e) => setPassword(e.target.value)}
+                />
                 <Button btnTitle={"다음"} onClick={handleNext} currentSignupStep={currentSignupStep} />
             </div>
         </>

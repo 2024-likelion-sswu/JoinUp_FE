@@ -8,7 +8,12 @@ const LandingPage = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            navigate("/home");
+            const token = localStorage.getItem('authToken');
+            if (token) {
+                navigate("/home");
+            } else {
+                navigate("/login");
+            }
         }, 4000);
 
         return () => clearTimeout(timer);

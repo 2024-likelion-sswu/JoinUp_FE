@@ -2,10 +2,14 @@ import React, { useEffect, useState } from "react";
 import "../../assets/scss/section/Lineup/home_map.scss";
 import { FaBell } from "react-icons/fa";
 import { RiSendPlaneLine } from "react-icons/ri";
+import Home from "./Home";
+import { useNavigate } from "react-router-dom";
 
 const HomeMap = () => {
   // 현재 위치 상태 관리
   const [currentLocation, setCurrentLocation] = useState("서울 중심");
+  const [clickScrollBar, setClickScrollBar] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -32,7 +36,7 @@ const HomeMap = () => {
     return () => {
       document.head.removeChild(script);
     };
-  }, []);
+  }, [clickScrollBar]);
 
   const initializeMap = () => {
     const mapContainer = document.getElementById("map");
@@ -131,8 +135,15 @@ const HomeMap = () => {
     });
   };
 
+  const handleScrollBar = () => {
+    setClickScrollBar(!clickScrollBar);
+    // if (clickScrollBar) {
+    //   navigate('/home');
+    // }
+  }
+
   return (
-    <div className="home-map-container">
+    <div className="home-map-container container">
       <header className="map-header">
         <div className="location-info">
           <RiSendPlaneLine className="send-icon" />
@@ -143,7 +154,17 @@ const HomeMap = () => {
         </div>
         <FaBell className="bell-icon" />
       </header>
-      <div id="map" className="map" style={{ width: "100%", height: "500px" }}></div>
+      {clickScrollBar ? (
+        <Home onClick={handleScrollBar} />
+      ) : (
+        <>
+        <div id="map" className="map" style={{ width: "100%", height: "80vh", maxHeight: "650px" }}></div>
+        <div className="home-map-scroll-area btn" onClick={handleScrollBar}>
+          <div className="home-map-scroll-bar"></div>
+        </div>
+        </>
+      )}
+
     </div>
   );
 };

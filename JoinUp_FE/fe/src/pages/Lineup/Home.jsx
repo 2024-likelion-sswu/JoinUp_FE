@@ -4,7 +4,7 @@ import { FaBell, FaHeart, FaRegHeart, FaChevronRight, FaPlus } from "react-icons
 import { RiSendPlaneLine } from "react-icons/ri";
 import { IoPersonOutline } from "react-icons/io5";
 
-const Home = () => {
+const Home = ({onClick}) => {
     const [likedStops, setLikedStops] = useState([]);
     const [activePage, setActivePage] = useState(0);
     const queueListRef = useRef(null);
@@ -59,19 +59,8 @@ const Home = () => {
     };
     return (
         <div className="home-container">
-            <header className="header">
-                <div className="location-info">
-                    <RiSendPlaneLine className="send-icon" />
-                    <div className="location-text">
-                        <h1>내 위치</h1>
-                        <p>왕십리역 7번출구</p>
-                    </div>
-                </div>
-                <FaBell className="bell-icon" />
-            </header>
-
             <section className="queue-section">
-                <div className="section-header">
+                <div className="section-header btn" onClick={onClick}>
                     <h2>줄서기</h2>
                     <FaPlus className="add-icon" />
                 </div>

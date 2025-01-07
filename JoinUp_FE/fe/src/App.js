@@ -6,7 +6,6 @@ import SignupPage from "./pages/Login/SignupPage";
 import Coupon from "./pages/MyPage/Coupon";
 import List from "./pages/MyPage/List";
 import LineupPlus from "./pages/Lineup/Lineup_plus";
-import Home from "./pages/Lineup/Home";
 import Home_map from "./pages/Lineup/Home_map";
 import MyPage from './pages/MyPage/MyPage'
 import MyEdit from "./pages/MyPage/MyEdit";
@@ -29,8 +28,7 @@ function App() {
           {/* 기본 경로 "/"를 "/home"으로 리다이렉트 */}
           <Route path="/" element={<LandingPage />} />
           {/* <Route path="/" element={<Navigate to="/home" />} /> */}
-          <Route path="/home" element={<Home />} />
-          <Route path="/home_map" element={<Home_map />} />
+          <Route path="/home" element={<Home_map />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/coupon" element={<Coupon />} />

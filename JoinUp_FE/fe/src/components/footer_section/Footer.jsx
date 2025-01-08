@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Footer = () => {
   const footerItems = [
@@ -52,7 +52,10 @@ const Footer = () => {
     },
   ]
 
-  const [activeFooterIndex, setActiveFooterIndex] = useState(0);
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const isActive = (link) => currentPath.includes(link);
 
   return (
     <div id='footer_container'>
@@ -60,10 +63,9 @@ const Footer = () => {
         <div id="footer_inner_box">
           {footerItems.map((item, index) => (
             <Link to={item.link}>
-              <div className={`footer_inner_item btn ${activeFooterIndex === index ? 'active' : ''}`} key={index}
-                onClick={() => setActiveFooterIndex(index)}>
+              <div className={`footer_inner_item btn ${isActive(item.link) ? 'active' : ''}`} key={index}>
                 <div className="footer_inner_icon">
-                  {item.renderSvg(activeFooterIndex === index)}
+                  {item.renderSvg(isActive(item.link))}
                 </div>
                 <span className="footer_inner_span">{item.label}</span>
               </div>

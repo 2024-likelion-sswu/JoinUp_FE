@@ -8,14 +8,14 @@ import { useNavigate } from "react-router-dom";
 const HomeMap = () => {
   // 현재 위치 상태 관리
   const [currentLocation, setCurrentLocation] = useState("서울 중심");
-  const [clickScrollBar, setClickScrollBar] = useState(false);
+  const [clickScrollBar, setClickScrollBar] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const script = document.createElement("script");
     script.type = "text/javascript";
     script.src =
-      "https://dapi.kakao.com/v2/maps/sdk.js?appkey=093400fc76a640af10afaf930cedd4b2&autoload=false&libraries=services,clusterer,drawing";
+      "https://dapi.kakao.com/v2/maps/sdk.js?appkey=92498b59e666400e9a2fbefe69809ce9&autoload=false&libraries=services,clusterer,drawing";
     script.async = true;
     document.head.appendChild(script);
 

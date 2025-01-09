@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../assets/scss/section/Lineup/home.scss";
 import { FaBell, FaHeart, FaRegHeart, FaChevronRight, FaPlus } from "react-icons/fa";
 import { RiSendPlaneLine } from "react-icons/ri";
@@ -8,6 +9,7 @@ const Home = ({onClick}) => {
     const [likedStops, setLikedStops] = useState([]);
     const [activePage, setActivePage] = useState(0);
     const queueListRef = useRef(null);
+    const navigate = useNavigate();
 
     const mockData = [
         {
@@ -57,12 +59,13 @@ const Home = ({onClick}) => {
 
         setActivePage(currentPage);
     };
+    
     return (
         <div className="home-container">
             <section className="queue-section">
-                <div className="section-header btn" onClick={onClick}>
+                <div className="section-header" onClick={onClick}>
                     <h2>줄서기</h2>
-                    <FaPlus className="add-icon" />
+                    <FaPlus className="add-icon" onClick={() => navigate("/lineup_plus")}/>
                 </div>
                 <div className="queue-list">
                     {mockData.map((item) => (

@@ -117,7 +117,7 @@
                     /* 세로로 중앙 정렬 */
                     color: #8F8F8F;
 
-                    .time {
+                    .date {
                         margin-left: 10px;
                         margin-bottom: 3px;
                     }
@@ -177,14 +177,15 @@
                         align-items: flex-start;
 
                         .role {
-                            font-size: 13px;
+                            font-size: 16px;
                             font-weight: 400;
                             margin: 0;
+                            margin-top: 3px;
                             /* 기본 여백 제거 */
                         }
 
                         .username {
-                            font-size: 11px;
+                            font-size: 13px;
                             color: #888;
                             margin: 0;
                             /* 기본 여백 제거 */

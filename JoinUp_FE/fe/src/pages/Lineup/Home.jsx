@@ -8,8 +8,8 @@ import { IoPersonOutline } from "react-icons/io5";
 const Home = ({ onClick }) => {
   const [likedStops, setLikedStops] = useState([]); // 좋아요한 정류장
   const [activePage, setActivePage] = useState(0);
-  const [queueData, setQueueData] = useState([]); // 모집 글 데이터를 저장할 상태
-  const [joinedQueues, setJoinedQueues] = useState([]); // 사용자가 참여한 줄서기
+  const [queueData, setQueueData] = useState([]); // 모집 글 데이터
+  const [joinedQueues, setJoinedQueues] = useState([]); // 참여한 줄서기
   const queueListRef = useRef(null);
   const navigate = useNavigate();
 
@@ -18,19 +18,16 @@ const Home = ({ onClick }) => {
     const fetchLikedStops = async () => {
       try {
         const token = localStorage.getItem("authToken");
-
         const response = await axios.get("http://localhost:8080/my-stations", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
-        // 응답 데이터가 배열인지 확인
-        const stops = Array.isArray(response.data) ? response.data : [];
-        setLikedStops(stops); // 상태에 저장
+        setLikedStops(response.data.data || []); // 데이터가 없으면 빈 배열
       } catch (error) {
         console.error("좋아요한 정류장을 불러오는 중 오류 발생:", error);
-        setLikedStops([]); // 오류 발생 시 빈 배열로 초기화
+        setLikedStops([]); // 오류 시 빈 배열로 초기화
       }
     };
 
@@ -42,18 +39,19 @@ const Home = ({ onClick }) => {
     const fetchQueueData = async () => {
       try {
         const token = localStorage.getItem("authToken");
+        const response = await axios.get(
+          "http://localhost:8080/recruit-posts?location=",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
-        const response = await axios.get("http://localhost:8080/recruit-posts?location=", {
-          headers: {
-            Authorization: `Bearer ${token}`, // 토큰 포함
-          },
-        });
-
-        console.log("Fetched Data:", response.data.data); // 데이터 구조 확인
-        setQueueData(response.data.data || []);
+        setQueueData(response.data.data || []); // 데이터가 없으면 빈 배열
       } catch (error) {
         console.error("데이터를 불러오는 중 오류 발생:", error);
-        setQueueData([]); // 오류 시 빈 배열로 설정
+        setQueueData([]);
       }
     };
 
@@ -73,29 +71,26 @@ const Home = ({ onClick }) => {
     const differenceInMinutes = Math.floor(differenceInMilliseconds / 60000);
     const differenceInHours = Math.floor(differenceInMinutes / 60);
 
-    if (differenceInMinutes < 60) {
-      return `${differenceInMinutes}분 전`;
-    } else {
-      return `${differenceInHours}시간 ${differenceInMinutes % 60}분 전`;
-    }
+    return differenceInMinutes < 60
+      ? `${differenceInMinutes}분 전`
+      : `${differenceInHours}시간 ${differenceInMinutes % 60}분 전`;
   };
 
   // 줄서기 처리
   const handleJoinQueue = async (recruitPostId) => {
-    if (!recruitPostId) {
-      console.error("Invalid recruitPostId:", recruitPostId); // 오류 로깅
-      return;
-    }
-
     const token = localStorage.getItem("authToken");
+
     try {
       if (joinedQueues.includes(recruitPostId)) {
-        // 줄서기 취소 요청
-        await axios.delete(`http://localhost:8080/recruit-posts/${recruitPostId}/join`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        // 줄서기 취소
+        await axios.delete(
+          `http://localhost:8080/recruit-posts/${recruitPostId}/join`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         setJoinedQueues(joinedQueues.filter((id) => id !== recruitPostId));
         setQueueData((prevData) =>
@@ -107,11 +102,15 @@ const Home = ({ onClick }) => {
         );
       } else {
         // 줄서기 요청
-        await axios.post(`http://localhost:8080/recruit-posts/${recruitPostId}/join`, null, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        await axios.post(
+          `http://localhost:8080/recruit-posts/${recruitPostId}/join`,
+          null,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
 
         setJoinedQueues([...joinedQueues, recruitPostId]);
         setQueueData((prevData) =>
@@ -128,29 +127,32 @@ const Home = ({ onClick }) => {
   };
 
   // 택시 정류장 좋아요 처리
-  const toggleLike = async (id) => {
+  const toggleLike = async (station) => {
+    const token = localStorage.getItem("authToken");
+
     try {
-      const token = localStorage.getItem("authToken");
-      if (likedStops.includes(id)) {
+      if (likedStops.some((s) => s.id === station.id)) {
         // 좋아요 취소
-        await axios.delete(`http://localhost:8080/my-stations/${id}`, {
+        await axios.delete(`http://localhost:8080/my-stations/${station.id}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
-        setLikedStops(likedStops.filter((stopId) => stopId !== id));
+
+        setLikedStops(likedStops.filter((s) => s.id !== station.id));
       } else {
         // 좋아요 추가
-        await axios.post(
+        const response = await axios.post(
           "http://localhost:8080/my-stations",
-          { stationName: id },
+          { stationName: station.stationName },
           {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           }
         );
-        setLikedStops([...likedStops, id]);
+
+        setLikedStops([...likedStops, response.data]);
       }
     } catch (error) {
       console.error("좋아요 처리 중 오류 발생:", error);
@@ -177,7 +179,7 @@ const Home = ({ onClick }) => {
           <FaPlus className="add-icon" onClick={() => navigate("/lineup_plus")} />
         </div>
         <div className="queue-list">
-          {queueData && queueData.length > 0 ? (
+          {queueData.length > 0 ? (
             queueData.map((item) => (
               <div
                 key={item.recruitPostId}
@@ -196,72 +198,38 @@ const Home = ({ onClick }) => {
                   <p className="date">{formatTimeDifference(item.expiresAt)}</p>
                 </div>
                 <div className="role-wrapper">
-                  <div className="circle"></div>
-                  <div className="role-username">
-                    <p className="role">{item.title}</p>
-                    <p className="username">{item.writerName}</p>
-                    <button className="chat-button">채팅하기</button>
-                  </div>
+                  <p className="role">{item.title}</p>
+                  <p className="username">{item.writerName}</p>
                 </div>
-                <div className="location-wrapper">
-                  <p className="label">위치</p>
-                  <div className="location-row">
-                    <p className="location">{item.location}</p>
-                    <FaChevronRight className="chevron-icon" />
-                  </div>
-                </div>
-                <div className="info-group">
-                  <div className="members-wrapper">
-                    <p className="label">모집인원</p>
-                    <div className="icon-count">
-                      <IoPersonOutline className="person-icon" />
-                      <p className="count">
-                        {item.currentMembers}/{item.maxMembers}
-                      </p>
-                      <button
-                        className="line-button"
-                        onClick={() => handleJoinQueue(item.recruitPostId)}
-                      >
-                        {joinedQueues.includes(item.recruitPostId)
-                          ? "줄서기 취소"
-                          : "줄서기"}
-                      </button>
-                    </div>
-                  </div>
-                  <p className="time">{new Date(item.createdAt).toLocaleString()}</p>
-                </div>
+                <button
+                  className="line-button"
+                  onClick={() => handleJoinQueue(item.recruitPostId)}
+                >
+                  {joinedQueues.includes(item.recruitPostId)
+                    ? "줄서기 취소"
+                    : "줄서기"}
+                </button>
               </div>
             ))
           ) : (
-            <p>데이터를 불러오는 중이거나 데이터가 없습니다.</p>
+            <p>줄서기 데이터가 없습니다.</p>
           )}
-        </div>
-
-        <div className="pagination">
-          {queueData &&
-            queueData.map((_, index) => (
-              <span
-                key={index}
-                className={`dot ${index === activePage ? "active" : ""}`}
-              ></span>
-            ))}
         </div>
       </section>
 
       <section className="taxi-section">
         <h2>나의 택시정류장</h2>
         <ul className="taxi-list">
-          {likedStops.map((stop) => (
-            <li key={stop} className="taxi-item">
-              <button className="heart-button" onClick={() => toggleLike(stop)}>
-                {likedStops.includes(stop) ? (
+          {likedStops.map((station) => (
+            <li key={station.id} className="taxi-item">
+              <button className="heart-button" onClick={() => toggleLike(station)}>
+                {likedStops.some((s) => s.id === station.id) ? (
                   <FaHeart className="heart-icon liked" />
                 ) : (
                   <FaRegHeart className="heart-icon" />
                 )}
               </button>
-              <span>{stop}</span>
-              <button className="view-button">보러가기</button>
+              <span>{station.stationName}</span>
             </li>
           ))}
         </ul>

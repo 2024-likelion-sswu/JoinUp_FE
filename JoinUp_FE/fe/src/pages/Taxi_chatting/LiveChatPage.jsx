@@ -1,42 +1,95 @@
 import React, { useEffect, useState } from 'react'
-import { collection, addDoc, onSnapshot, query, orderBy } from "firebase/firestore";
+import { collection, addDoc, onSnapshot, query, orderBy, doc, updateDoc, getDocs } from "firebase/firestore";
 import { db } from "../../assets/JS/Firebase";
 import ChatMessage from '../../components/main_section/Taxi_chatting/ChatMessage'
 import Header from '../../components/header_section/Header'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const LiveChatPage = () => {
     const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
+    const [chatUserInfo, setChatUserInfo] = useState(null);
+    const [chatPartnerInfo, setChatPartnerInfo] = useState(null);
+
+    const currentUserEmail = localStorage.getItem('userEmail');
+    const { chatRoomId } = useParams();
 
     const chatCollection = collection(db, "chats");
 
     useEffect(() => {
         const q = query(chatCollection, orderBy("timestamp", "asc"));
         const unsubscribe = onSnapshot(q, (snapshot) => {
-            const chatData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-            setMessages(chatData);
+            const allData = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+            const filteredData = allData.filter((data) => data.roomId === chatRoomId);
+            setMessages(filteredData);
         });
 
         return () => unsubscribe();
-    }, []);
+    }, [chatRoomId]);
+
+    useEffect(() => {
+        const fetchChatRoomData = async () => {
+            try {
+                const chatRoomsCollection = collection(db, "chatRooms");
+    
+                // Firestore의 실시간 업데이트를 감지
+                const unsubscribe = onSnapshot(chatRoomsCollection, (snapshot) => {
+                    const allRooms = snapshot.docs.map((doc) => ({
+                        id: doc.id,
+                        ...doc.data(),
+                    }));
+    
+                    const matchingRoom = allRooms.find((room) => room.roomId === chatRoomId);
+    
+                    if (matchingRoom) {
+                        setChatUserInfo(matchingRoom.chatUser); // chatUser 설정
+                        setChatPartnerInfo(matchingRoom.chatPartner); // chatPartner 설정
+                    } else {
+                        console.error("해당 채팅방 정보를 찾을 수 없습니다.");
+                    }
+                });
+    
+                // 컴포넌트가 언마운트될 때 실시간 업데이트 해제
+                return () => unsubscribe();
+            } catch (error) {
+                console.error("채팅방 정보 가져오기 실패:", error);
+            }
+        };
+    
+        fetchChatRoomData();
+    }, [chatRoomId]);
 
     const sendMessage = async () => {
         if (newMessage.trim() === "") return;
 
-        await addDoc(chatCollection, {
-            sender: "other",
+        const messageData = {
+            sender: currentUserEmail,
             text: newMessage,
             timestamp: new Date(),
-        });
+            roomId: chatRoomId,
+        };
 
-        setNewMessage("");
+        try {
+            // 메시지 추가
+            const docRef = await addDoc(chatCollection, messageData);
+
+            // `chatRooms` 컬렉션의 `lastMessage` 업데이트
+            const chatRoomRef = doc(db, "chatRooms", chatRoomId); // roomId는 현재 채팅방의 ID
+            await updateDoc(chatRoomRef, {
+                lastMessage: newMessage,
+                timestamp: messageData.timestamp,
+            });
+
+            setNewMessage("");
+        } catch (error) {
+            console.error("메시지 전송 실패:", error);
+        }
     };
 
     const navigate = useNavigate();
 
     const handleBack = () => {
-        navigate(-1);
+        navigate('/livechat');
     };
 
     return (
@@ -51,13 +104,35 @@ const LiveChatPage = () => {
                         </svg>
                     </div>
                     <div id="chat_notice_text_box">
-                        <span>에비씨abd님과의 채팅창입니다.</span>
+                        <span>
+                            {chatUserInfo && chatPartnerInfo ? (
+                                <span>
+                                    {chatUserInfo.email === currentUserEmail
+                                        ? chatPartnerInfo.name
+                                        : chatUserInfo.name}
+                                    님과의 채팅창입니다.
+                                </span>
+                            ) : (
+                                <span>데이터를 불러오는 중...</span>
+                            )}
+                        </span>
                     </div>
                 </div>
             </div>
             <div className="chat_inner_container">
                 {messages.map((message) => (
-                    <ChatMessage key={message.id} text={message.text} sender={message.sender} />
+                    <ChatMessage
+                        key={message.id}
+                        text={message.text}
+                        sender={message.sender === currentUserEmail ? 'me' : 'other'}
+                        chatInfo={
+                            chatUserInfo && chatPartnerInfo
+                                ? chatUserInfo.email === currentUserEmail
+                                    ? chatPartnerInfo
+                                    : chatUserInfo
+                                : null
+                        }
+                    />
                 ))}
             </div>
             <div id="chat_input_container">

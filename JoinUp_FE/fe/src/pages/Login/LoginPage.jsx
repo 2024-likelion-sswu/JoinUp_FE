@@ -19,6 +19,7 @@ const LoginPage = () => {
             if (response.data.success) {
                 const token = response.data.data.token;
                 localStorage.setItem('authToken', token);
+                localStorage.setItem('userEmail', loginEmail);
                 alert(response.data.message);
                 navigate('/');
             } else {

@@ -1,12 +1,16 @@
 import React from 'react'
 
-const ChatMessage = ({ text, sender }) => {
+const ChatMessage = ({ text, sender, chatInfo }) => {
     return (
         <div className='chat_message_container'>
             <div className={`chat_message_inner_container ${sender === 'me' ? 'my_message_container' : 'other_message_container'}`}>
                 {sender === 'other' && (
                     <div className="other_message_profile">
-                        <img src="https://s3-alpha-sig.figma.com/img/e3a4/7dab/c01d37fb5ee2fab1edaeda68af89c73c?Expires=1736726400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=JVZf1gqASUhin5KnX~DedLki6y6V4kan0ixRuR2RUlpVgJ7zO3WQTkahjXZpzT~I0IQ7KuVH1fZ61~1ZFHSArPiL8tRCg~SaygIyn~d5uV1Dazd1dMzYCkYPfDfRGKH6srfDJHzl8t5HrsyoQLjd0lZi1qipIClv~6bkNCzP~2hIsup1esmZgo27VgqcxCpnqqrbgHTCI68wcWnqbvJxSYHLynvts8qB1qSMfhsCuJbg1Xml9r4OF9jIYVELj2nQt5YOW25C67Hm7NQKns7bGxqzuo5ynKbw1pBvcVgUrM2vGWFBzPYaZJfoZ2~Wi9hD6elJjkGjPM88NXHXtGSxkw__" alt="프로필 사진" />
+                        {chatInfo ? (
+                            <img src={chatInfo.profileImageUrl || "https://s3-alpha-sig.figma.com/img/f403/4338/0c85127f3d52cd1b5f0e9e7ae098f78e?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cBI2lRaKRRZuPrLP5~ut6doLVVxDQWevhYPJp40MLwB95sVv6R-WspuzjN6TxyRSvS3vMHP42KYwjEz2HA7YIKHixzRYuLlnNJcwb~lB9Bx6JJ2bX3VeAOwEe72tvE1xVw2XUGlRTCPJAeiz770u1p9joI2o318T5jnDWm~Gy1l8jsl63T1gNGo-Yrk5y~9~bUIIK9Rk8vIXVrzoyfmgHohMPrNaeLvnTR0XWLDbsei32SPPHBz-KvvMGwbTn6lfc2hbi6XbQEA1e4qQScqL37SpA7jmeu4J7MeaM90hDscAwCXSYX9XS99MG~kYQSshpE0yiX4Zix51NEZegh5qoA__"} alt="프로필 사진" />
+                        ) : (
+                            <img src="https://s3-alpha-sig.figma.com/img/f403/4338/0c85127f3d52cd1b5f0e9e7ae098f78e?Expires=1737331200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=cBI2lRaKRRZuPrLP5~ut6doLVVxDQWevhYPJp40MLwB95sVv6R-WspuzjN6TxyRSvS3vMHP42KYwjEz2HA7YIKHixzRYuLlnNJcwb~lB9Bx6JJ2bX3VeAOwEe72tvE1xVw2XUGlRTCPJAeiz770u1p9joI2o318T5jnDWm~Gy1l8jsl63T1gNGo-Yrk5y~9~bUIIK9Rk8vIXVrzoyfmgHohMPrNaeLvnTR0XWLDbsei32SPPHBz-KvvMGwbTn6lfc2hbi6XbQEA1e4qQScqL37SpA7jmeu4J7MeaM90hDscAwCXSYX9XS99MG~kYQSshpE0yiX4Zix51NEZegh5qoA__" alt="프로필 사진" />
+                        )}
                     </div>
                 )}
                 <div className={`chat_message_inner_box ${sender === 'me' ? 'my_message_box' : 'other_message_box'}`}>

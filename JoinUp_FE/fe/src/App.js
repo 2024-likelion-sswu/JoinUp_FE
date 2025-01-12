@@ -43,7 +43,7 @@ function App() {
           <Route path="/community" element={<Community/>}/>
         </Routes>
         {shouldShowFooter && <Footer />}
-      </>
+        </>
     );
   };
 

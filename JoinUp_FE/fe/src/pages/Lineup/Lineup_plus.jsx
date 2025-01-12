@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Import Axios
 import "../../assets/scss/section/Lineup/lineup_plus.scss";
-import { FaCamera, FaSearch } from "react-icons/fa"; // React-icons 라이브러리 추가
+import { FaCamera, FaSearch } from "react-icons/fa";
 
 const LineupPlus = () => {
   const [title, setTitle] = useState("");
@@ -9,16 +11,51 @@ const LineupPlus = () => {
   const [members, setMembers] = useState("");
   const [time, setTime] = useState(5);
 
-  const handleUpload = () => {
-    // 업로드 로직 추가
-    console.log({ title, content, location, members });
-    alert("업로드되었습니다!");
+  const navigate = useNavigate();
+
+  const handleUpload = async () => {
+    // 명세서에 따라 Body 데이터 구성
+    const payload = {
+      title,
+      content,
+      location,
+      maxMembers: members, // 모집인원
+      period: time, // 모집 기간
+    };
+  
+    try {
+      // 토큰 가져오기
+      const token = localStorage.getItem("authToken");
+  
+      // POST 요청 보내기
+      const response = await axios.post(
+        "http://localhost:8080/recruit-posts", // 백엔드 엔드포인트
+        payload, // Body 데이터
+        {
+          headers: {
+            Authorization: `Bearer ${token}`, // 헤더에 토큰 포함
+          },
+        }
+      );
+  
+      console.log("Response:", response.data);
+      alert("업로드되었습니다!");
+      navigate("/home"); // 업로드 성공 후 Home으로 이동
+    } catch (error) {
+      console.error("Error uploading post:", error);
+      alert("업로드에 실패했습니다. 다시 시도해주세요.");
+    }
+  };
+  
+
+  const handleClose = () => {
+    navigate("/home"); // Navigate to Home when close button is clicked
   };
 
   return (
     <div className="lineup-plus-container">
       <div className="header">
-        <button className="close-button">×</button>
+        <button className="close-button" onClick={handleClose}>×</button>
         <span>글쓰기</span>
       </div>
       <div className="form">
@@ -40,7 +77,7 @@ const LineupPlus = () => {
             value={content}
             onChange={(e) => setContent(e.target.value)}
           />
-          <FaCamera className="camera-icon" /> {/* 카메라 아이콘 추가 */}
+          <FaCamera className="camera-icon" />
         </div>
         <div className="form-group-row">
           <div className="form-group">
@@ -54,7 +91,7 @@ const LineupPlus = () => {
                 onChange={(e) => setLocation(e.target.value)}
               />
               <div className="search-button">
-                <FaSearch /> {/* 돋보기 아이콘 추가 */}
+                <FaSearch />
               </div>
             </div>
           </div>
@@ -94,4 +131,5 @@ const LineupPlus = () => {
     </div>
   );
 };
+
 export default LineupPlus;

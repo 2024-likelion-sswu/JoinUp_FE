@@ -6,16 +6,17 @@ import Home from "./Home";
 import { useNavigate } from "react-router-dom";
 
 const HomeMap = () => {
-  // 현재 위치 상태 관리
   const [currentLocation, setCurrentLocation] = useState("서울 중심");
   const [clickScrollBar, setClickScrollBar] = useState(false);
+  const [likedPositions, setLikedPositions] = useState([]);
   const navigate = useNavigate();
+  const [overlays, setOverlays] = useState({}); // Store overlays for dynamic updates
 
   useEffect(() => {
     const script = document.createElement("script");
     script.type = "text/javascript";
     script.src =
-      "https://dapi.kakao.com/v2/maps/sdk.js?appkey=093400fc76a640af10afaf930cedd4b2&autoload=false&libraries=services,clusterer,drawing";
+      "https://dapi.kakao.com/v2/maps/sdk.js?appkey=4ebcb27f678870a3ed3de7a0da539c36&autoload=false&libraries=services,clusterer,drawing";
     script.async = true;
     document.head.appendChild(script);
 
@@ -38,6 +39,77 @@ const HomeMap = () => {
     };
   }, [clickScrollBar]);
 
+  useEffect(() => {
+    // Update overlays when likedPositions changes
+    Object.entries(overlays).forEach(([key, overlay]) => {
+      const isLiked = likedPositions.includes(key);
+      const content = createOverlayContent(key, isLiked);
+      overlay.setContent(content);
+    });
+  }, [likedPositions]);
+
+  const createOverlayContent = (title, isLiked) => {
+    const overlayContent = document.createElement("div");
+    overlayContent.style.background = "white";
+    overlayContent.style.padding = "5px";
+    overlayContent.style.borderRadius = "5px";
+    overlayContent.style.boxShadow = "0 2px 6px rgba(0,0,0,0.3)";
+    overlayContent.style.position = "relative";
+    overlayContent.style.transform = "translateY(-125%)";
+    overlayContent.style.textAlign = "center";
+    overlayContent.style.display = "flex";
+    overlayContent.style.justifyContent = "center";
+    overlayContent.style.alignItems = "center";
+
+    const titleElement = document.createElement("span");
+    titleElement.textContent = title;
+    titleElement.style.marginRight = "10px";
+    overlayContent.appendChild(titleElement);
+
+    const heartIcon = document.createElement("span");
+    heartIcon.style.cursor = "pointer";
+
+    const heartSVG = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    heartSVG.setAttribute("width", "17");
+    heartSVG.setAttribute("height", "17");
+    heartSVG.setAttribute("viewBox", "0 0 22 20");
+    heartSVG.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("fill-rule", "evenodd");
+    path.setAttribute("clip-rule", "evenodd");
+    path.setAttribute(
+      "d",
+      "M11 18L9.55 16.7771C4.4 12.4507 1 9.59728 1 6.09537C1 3.24196 3.42 1 6.5 1C8.24 1 9.91 1.75041 11 2.93624C12.09 1.75041 13.76 1 15.5 1C18.58 1 21 3.24196 21 6.09537C21 9.59728 17.6 12.4507 12.45 16.7864L11 18Z"
+    );
+
+    if (isLiked) {
+      path.setAttribute("fill", "#B097FF");
+      path.setAttribute("stroke", "#B097FF");
+    } else {
+      path.setAttribute("fill", "none");
+      path.setAttribute("stroke", "#B097FF");
+    }
+
+    path.setAttribute("stroke-width", "2");
+    heartSVG.appendChild(path);
+    heartIcon.appendChild(heartSVG);
+
+    heartIcon.style.width = "17px"; // 부모 요소 크기 설정 (필요에 따라 조정)
+heartIcon.style.height = "17px";
+
+    heartIcon.onclick = () => {
+      setLikedPositions((prev) =>
+        prev.includes(title)
+          ? prev.filter((t) => t !== title)
+          : [...prev, title]
+      );
+    };
+    overlayContent.appendChild(heartIcon);
+
+    return overlayContent;
+  };
+
   const initializeMap = () => {
     const mapContainer = document.getElementById("map");
     if (!mapContainer) {
@@ -46,13 +118,12 @@ const HomeMap = () => {
     }
 
     const mapOption = {
-      center: new window.kakao.maps.LatLng(37.566535, 126.9779692), // 서울 시청
-      level: 8, // 확대 레벨
+      center: new window.kakao.maps.LatLng(37.566535, 126.9779692),
+      level: 8,
     };
 
     const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
-    // 위치 데이터 배열
     const positions = [
       { title: "도봉산", latlng: new window.kakao.maps.LatLng(37.689535, 127.046489) },
       { title: "창동", latlng: new window.kakao.maps.LatLng(37.653288, 127.047425) },
@@ -107,7 +178,8 @@ const HomeMap = () => {
       { title: "천호", latlng: new window.kakao.maps.LatLng(37.538397, 127.123572) },
     ];
 
-    // 각 위치에 마커 추가
+    const newOverlays = {}; // Temporary storage for overlays
+
     positions.forEach((pos) => {
       const marker = new window.kakao.maps.Marker({
         map: map,
@@ -115,32 +187,26 @@ const HomeMap = () => {
         title: pos.title,
       });
 
-      const infowindow = new window.kakao.maps.InfoWindow({
-        content: `<div style="padding:5px;font-size:12px;">${pos.title}</div>`,
+      const customOverlay = new window.kakao.maps.CustomOverlay({
+        content: createOverlayContent(pos.title, likedPositions.includes(pos.title)),
+        position: pos.latlng,
+        yAnchor: 1,
       });
 
-      // 마커 클릭 이벤트: "내 위치" 업데이트 및 지도 중심 이동
+      newOverlays[pos.title] = customOverlay;
+
       window.kakao.maps.event.addListener(marker, "click", () => {
-        setCurrentLocation(pos.title); // 상태 업데이트
-        map.setCenter(pos.latlng); // 지도 중심 이동
+        customOverlay.setMap(map);
+        setCurrentLocation(pos.title);
       });
-
-      // 마우스 오버/아웃 이벤트로 정보창 표시
-      window.kakao.maps.event.addListener(marker, "mouseover", () =>
-        infowindow.open(map, marker)
-      );
-      window.kakao.maps.event.addListener(marker, "mouseout", () =>
-        infowindow.close()
-      );
     });
+
+    setOverlays(newOverlays); // Store overlays in state
   };
 
   const handleScrollBar = () => {
     setClickScrollBar(!clickScrollBar);
-    // if (clickScrollBar) {
-    //   navigate('/home');
-    // }
-  }
+  };
 
   return (
     <div className="home-map-container container">
@@ -158,13 +224,12 @@ const HomeMap = () => {
         <Home onClick={handleScrollBar} />
       ) : (
         <>
-        <div id="map" className="map" style={{ width: "100%", height: "80vh", maxHeight: "650px" }}></div>
-        <div className="home-map-scroll-area btn" onClick={handleScrollBar}>
-          <div className="home-map-scroll-bar"></div>
-        </div>
+          <div id="map" className="map" style={{ width: "100%", height: "80vh", maxHeight: "650px" }}></div>
+          <div className="home-map-scroll-area btn" onClick={handleScrollBar}>
+            <div className="home-map-scroll-bar"></div>
+          </div>
         </>
       )}
-
     </div>
   );
 };

@@ -35,7 +35,7 @@ function App() {
           <Route path="/list" element={<List />} />
           <Route path="/lineup_plus" element={<LineupPlus />} />
           <Route path="/livechat" element={<LiveChatListPage />} />
-          <Route path="/livechat/id" element={<LiveChatPage />} />
+          <Route path="/livechat/:chatRoomId" element={<LiveChatPage />} />
           <Route path="/mypage" element={<MyPage/> } />
           <Route path="/myedit" element={<MyEdit/>}/>
           <Route path="/post" element={<Post/>}/>

@@ -4,6 +4,7 @@ import { FaBell } from "react-icons/fa";
 import { RiSendPlaneLine } from "react-icons/ri";
 import Home from "./Home";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const HomeMap = () => {
   const [currentLocation, setCurrentLocation] = useState("서울 중심");
@@ -47,6 +48,27 @@ const HomeMap = () => {
       overlay.setContent(content);
     });
   }, [likedPositions]);
+
+  const handleAddStation = async (stationName) => {
+    try {
+      const token = localStorage.getItem("authToken"); // 실제 토큰 값으로 교체하세요
+      const response = await axios.post(
+        "http://localhost:8080/my-stations",
+        { stationName },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("정류장 추가 성공:", response.data);
+      alert("정류장이 성공적으로 추가되었습니다!");
+    } catch (error) {
+      console.error("정류장 추가 실패:", error.response?.data || error.message);
+      alert("정류장 추가 중 오류가 발생했습니다.");
+    }
+  };
 
   const createOverlayContent = (title, isLiked) => {
     const overlayContent = document.createElement("div");
@@ -95,16 +117,16 @@ const HomeMap = () => {
     heartSVG.appendChild(path);
     heartIcon.appendChild(heartSVG);
 
-    heartIcon.style.width = "17px"; // 부모 요소 크기 설정 (필요에 따라 조정)
-heartIcon.style.height = "17px";
+    heartIcon.style.width = "17px";
+    heartIcon.style.height = "17px";
 
-    heartIcon.onclick = () => {
-      setLikedPositions((prev) =>
-        prev.includes(title)
-          ? prev.filter((t) => t !== title)
-          : [...prev, title]
-      );
+    heartIcon.onclick = async () => {
+      if (!isLiked) {
+        await handleAddStation(title); // 서버로 데이터 전송
+        setLikedPositions((prev) => [...prev, title]);
+      }
     };
+
     overlayContent.appendChild(heartIcon);
 
     return overlayContent;
@@ -177,6 +199,7 @@ heartIcon.style.height = "17px";
       { title: "잠실", latlng: new window.kakao.maps.LatLng(37.513950, 127.102234) },
       { title: "천호", latlng: new window.kakao.maps.LatLng(37.538397, 127.123572) },
     ];
+
 
     const newOverlays = {}; // Temporary storage for overlays
 

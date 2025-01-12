@@ -56,11 +56,11 @@ const Signup3 = ({ goToSignupPrevStep, currentSignupStep, totalSignupSteps, sign
                     </div>
                 </div>
                 <LoginInput
-                    inputLabel1={"이름"}
+                    inputLabel1={"닉네임"}
                     inputLabel2={"생년월일"}
                     inputType1={"text"}
                     inputType2={"text"}
-                    placeholder1={"이름을 입력해주세요"}
+                    placeholder1={"닉네임을 입력해주세요"}
                     placeholder2={"생년월일 8자를 입력해주세요"}
                     onChange1={(e) => setName(e.target.value)}
                     onChange2={(e) => setBirthDate(e.target.value)}

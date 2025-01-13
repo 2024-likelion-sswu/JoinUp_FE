@@ -22,7 +22,7 @@
     }
 
     .PostWrap {
-        width: 350px;
+        width: 340px;
         margin-top: 5%;
         height: 220px;
         overflow-x: auto;
@@ -30,91 +30,120 @@
         gap: 17px;
         flex-wrap: nowrap;
         .Post {
-            width: 115px;
+            width: 340px;
             height: 149px;
             padding-left : 8px;
-            padding-top : 8px;
+            padding-top : 20px;
             border-radius: 10px;
             background: rgba(176, 151, 255, 0.15);
             box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.08);
             flex-shrink: 0;
 
-            .PostMin {
-                color: #000;
-                font-size: 13px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: normal;
-                letter-spacing: -0.28px;
-            }
-
-            .PostLocationLable {
-                color: #000;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: normal;
-                letter-spacing: -0.28px;
-                margin-top : 12px;
-            }
-
-            .PostLocation {
-                color: #333;
-                font-size: 13px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: normal;
-                letter-spacing: -0.28px;
-                margin-top : 7px;
-            }
-
-            .PostRecruitLable {
-                color: #000;
-                font-size: 14px;
-                font-style: normal;
-                font-weight: 500;
-                line-height: normal;
-                letter-spacing: -0.28px;
-                margin-top : 12px;
-            }
-
-            .PostRecruitBox {
+            .PostProfileBox {
                 display: flex;
-                margin-top : 10px;
+                padding-left: 14px;
+                .PostProfile {
+                    display: flex;
+                    .PostProfileImg {
+                        width: 63px;
+                        height: 63px;
+                        background-color: #fff;
+                        border-radius: 50%;
+                    }
+                    .PostProfileLable {
+                        margin-left: 8px;
+                        margin-top: 12px;
+                    }
+                }
+                .PostMin {
+                    color: #000;
+                    font-size: 13px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    letter-spacing: -0.28px;
+                    margin-left: 120px;
+                } 
             }
 
-            .PostRecruitBoxImg {
-                width: 10px;
-                height: 13.921px;
-                flex-shrink: 0;
+            .PostPart2 {
+                display: flex;
+                margin-left: 19px;
+                // 위치
+                .PostLocationBox {
+                    .PostLocationLable {
+                        color: #000;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: normal;
+                        letter-spacing: -0.28px;
+                        margin-top : 12px;
+                    }
+                    .PostLocation {
+                        color: #333;
+                        font-size: 13px;
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: normal;
+                        letter-spacing: -0.28px;
+                        margin-top : 7px;
+                    }
+                }
+
+                // 모집인원
+                .PostRecruitBox {
+                    margin-left: 30px;
+                    .PostRecruitLable {
+                        color: #000;
+                        font-size: 14px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: normal;
+                        letter-spacing: -0.28px;
+                        margin-top : 12px;
+                    }
+                    .PostRecruitBox2 {
+                        display: flex;
+                        margin-top : 7px;
+                        .PostRecruitBoxImg {
+                            width: 10px;
+                            height: 13.921px;
+                            flex-shrink: 0;
+                        }
+                        .PostRecruitBoxText {
+                            color: #333;
+                            font-size: 13px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: normal;
+                            letter-spacing: -0.28px;
+                            margin-left : 3%;
+                        }
+                        
+                    }
+        
+                }
+                .PostRecruitBoxButton {
+                    width: 81px;
+                    height: 53px;
+                    flex-shrink: 0;
+                    border-radius: 8px;
+                    background: #FFF;
+                    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.08);
+                    color: #000;
+                    font-size: 14px;
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: normal;
+                    letter-spacing: -0.28px;
+                    margin-left : 16%;
+                    cursor: pointer;
+                }
             }
 
-            .PostRecruitBoxText {
-                color: #333;
-                font-size: 13px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: normal;
-                letter-spacing: -0.28px;
-                margin-left : 3%;
-            }
-
-            .PostRecruitBoxButton {
-                width: 55px;
-                height: 18px;
-                flex-shrink: 0;
-                border-radius: 8px;
-                background: #FFF;
-                box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.08);
-                color: #000;
-                font-size: 11px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: normal;
-                letter-spacing: -0.28px;
-                margin-left : 10%;
-                cursor: pointer;
-            }
+            
+            
         }
     }
 
@@ -162,12 +191,11 @@
         line-height: normal;
         letter-spacing: -0.28px;
         margin-left: 10%;
-        margin-top: 15px;
     }
 
     .NoticeWrap {
         width: 340px;
-        height: 320px;
+        height: 250px;
         flex-shrink: 0;
         border-radius: 10px;
         background: #FFF;
@@ -176,7 +204,11 @@
         flex-direction: column;
         margin-top: 11px;
         z-index: -1;
+        overflow-y :auto;
 
+        &::-webkit-scrollbar {
+            display: none;
+            }
         .Notice {
             width: 340px;
             height: 62px;
@@ -211,6 +243,7 @@
                 font-weight: 400;
                 line-height: normal;
                 letter-spacing: -0.28px;
+                cursor: pointer;
             }
             
         }

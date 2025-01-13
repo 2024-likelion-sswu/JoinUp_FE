@@ -38,7 +38,7 @@
                 margin-bottom: 2%;
             }
             .UserEmail {
-                margin-bottom: 5%;
+                margin-bottom: 13px;
                 font-size: smaller;
             }
             .UserInfoBtn {
@@ -46,7 +46,8 @@
                 display: flex;
                 justify-content: space-between;
                 .UserInfoEditer {
-                    padding: 4%;
+                    width: 86px;
+                    height: 24px;
                     border-radius: 3px;
                     background-color: white;
                     box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.10);
@@ -54,24 +55,27 @@
                     cursor: pointer;
                 }
                 .UserInfoLogout {
-                    padding: 4%;
+                    width: 63px;
+                    height: 24px;
                     border-radius: 3px;
                     background-color: white;
                     box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.10);
                     font-size: 13px;
+                    margin-left: 13px;
                 }
             }
         }
     }
 
     .PayContainer {
+        width: 100%;
         display: flex;
         flex-direction: column;
-        margin: 10%;
         margin-top: 2%;
         .TotalPayBox {
             margin-top: 8%;
             margin-bottom: 10%;
+            margin-left: 24px;
             font-size: 18px;
             font-style: normal;
             font-weight: 500;
@@ -88,16 +92,17 @@
             }
         }
         .PointBox {
-            width: 100%;
+            width: 337px;
             height: 54px;
             display: flex;
             border-radius: 10px;
             align-items: center;
             background: #FFF;
             box-shadow: 0px 2px 4px 1px rgba(0, 0, 0, 0.10);
-            padding: 5%;
+            margin-left: 20px;
             .PointBox1 {
-                width: 20%;
+                margin-left: 18px;
+                width: 18%;
                 font-size: 17px;
                 font-style: normal;
                 font-weight: 400;
@@ -106,12 +111,11 @@
             .PointBox2 {
                 display: flex;
                 align-items: center;
-                gap: 8%;
-                width: 80%;
+                width: 188px;
                 height: 50%;
-                margin-left: 15%;
+                margin-left: 50px;
                 .NowPoint {
-                    width: 60%;
+                    width: 312px;
                     height: 27px;
                     border-radius: 3px;
                     display: flex;
@@ -119,7 +123,6 @@
                     justify-content: right;
                     background: #E7E7E7;
                     color: #717171;
-                    padding-right: 3px;
                     font-size: smaller;
                     text-align: right; 
                     font-size: 14px;
@@ -127,9 +130,11 @@
                     font-weight: 400;
                     line-height: 16px; /* 114.286% */
                     letter-spacing: 0.4px;
+                    padding-right: 10px;
+                    margin-right: 5px;
                 }
                 .ChargeBtn {
-                    width: 30%;
+                    width: 110px;
                     height: 27px;
                     background: rgba(76, 42, 181, 0.90);
                     border-radius: 3px;
@@ -139,6 +144,7 @@
                     line-height: 16px; /* 106.667% */
                     letter-spacing: 0.4px;
                     padding: 3%;
+                    cursor: pointer;
                 }
             }
         }
@@ -146,9 +152,10 @@
             width: 100%;
             height: 137px;
             margin-top: 10%;
+            margin-left: 19px;
             display: flex;
             .KakaoPayBox {
-                width: 67%;
+                width: 208px;
                 height: 100%;
                 border-radius: 10px;
                 background: #FFF;
@@ -209,10 +216,11 @@
                     justify-content: center;
                     align-items: center;
                     padding-bottom: 10px;
+                    cursor: pointer;
                 }
             }
             .CouponBox {
-                width: 30%;
+                width: 111px;
                 height: 100%;
                 margin-left: 4%;
                 border-radius: 10px;
@@ -236,16 +244,19 @@
                     text-align: center;
                     margin-top: 2%;
                     padding: 5%;
+                    cursor: pointer;
                 }
             }
         }
     }
     .PayList {
-        height: 54px;
-        margin-top: 1%;
-        margin-left: 10%;
         display: flex;
         align-items: center;
+        height: 54px;
+        margin-top: 2%;
+        margin-left: 10%;
+        cursor: pointer;
+        
         .PayList1 {
             width: 6px;
             height: 12px;

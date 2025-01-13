@@ -5,7 +5,6 @@ import HotPost from '../../components/Post_section/HotPost'
 import PostList from '../../components/Post_section/PostList'
 import Icon from '../../assets/images/Icon.svg'
 import { useNavigate } from 'react-router-dom'
-
 const Post = () => {
     const navigate = useNavigate();
     const [postCount, setPostCount] = useState([
@@ -15,7 +14,6 @@ const Post = () => {
         {title : "택시 탈 사람 있나?", content : "왕십리역이나 동역사에서 탈 예정임", like : 1, comment : 0},
         {title : "환승이슈", content : "환승 안하고 한번에 가고싶다.", like : 4, comment : 5},
     ]);
-
     const handleMoveAddPost = () => {
         navigate('/addpost')
     }
@@ -37,5 +35,4 @@ const Post = () => {
     </div>
   )
 }
-
 export default Post

@@ -11,20 +11,55 @@ const HomeMap = () => {
   const [clickScrollBar, setClickScrollBar] = useState(false);
   const [likedPositions, setLikedPositions] = useState([]);
   const navigate = useNavigate();
-  const [overlays, setOverlays] = useState({}); // Store overlays for dynamic updates
+  const [overlays, setOverlays] = useState([]); // Store overlays for dynamic updates
+  const [map, setMap] = useState(null);
+
+  const fetchLikedStops = async () => {
+    try {
+      const token = localStorage.getItem("authToken");
+      const response = await axios.get("http://localhost:8080/my-stations", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      const fetchedStations = response.data.data.map((item) => ({
+        id: item.id,
+        stationName: item.stationName,
+      }));
+      setLikedPositions(fetchedStations);
+    } catch (error) {
+      console.error("좋아요한 정류장을 불러오는 중 오류 발생:", error);
+      setLikedPositions([]); // 오류 시 빈 배열로 초기화
+    }
+  };
+
+
+  useEffect(() => {
+    fetchLikedStops();
+  }, []);
+  
 
   useEffect(() => {
     const script = document.createElement("script");
     script.type = "text/javascript";
     script.src =
-      "https://dapi.kakao.com/v2/maps/sdk.js?appkey=4ebcb27f678870a3ed3de7a0da539c36&autoload=false&libraries=services,clusterer,drawing";
+      "https://dapi.kakao.com/v2/maps/sdk.js?appkey=21c21b1e11eb27d9f4ed10a541965751&autoload=false&libraries=services,clusterer,drawing";
     script.async = true;
     document.head.appendChild(script);
 
     script.onload = () => {
       if (window.kakao && window.kakao.maps) {
         window.kakao.maps.load(() => {
-          initializeMap();
+          const mapContainer = document.getElementById("map");
+          if (mapContainer) {
+            const mapOption = {
+              center: new window.kakao.maps.LatLng(37.566535, 126.9779692),
+              level: 8,
+            };
+            const createdMap = new window.kakao.maps.Map(mapContainer, mapOption);
+            setMap(createdMap);
+          }
         });
       } else {
         console.error("Kakao Maps 객체를 사용할 수 없습니다.");
@@ -41,32 +76,41 @@ const HomeMap = () => {
   }, [clickScrollBar]);
 
   useEffect(() => {
-    // Update overlays when likedPositions changes
-    Object.entries(overlays).forEach(([key, overlay]) => {
-      const isLiked = likedPositions.includes(key);
-      const content = createOverlayContent(key, isLiked);
-      overlay.setContent(content);
-    });
-  }, [likedPositions]);
+    if (map) {
+      initializeMap(likedPositions);
+    }
+  }, [map, likedPositions]);
 
-  const handleAddStation = async (stationName) => {
+  const toggleLike = async (station) => {
+    const token = localStorage.getItem("authToken");
     try {
-      const token = localStorage.getItem("authToken"); // 실제 토큰 값으로 교체하세요
-      const response = await axios.post(
-        "http://localhost:8080/my-stations",
-        { stationName },
-        {
+      const isLiked = likedPositions.some((item) => item.stationName === station);
+
+      if (isLiked) {
+        const stationId = likedPositions.find((item) => item.stationName === station).id;
+        await axios.delete(`http://localhost:8080/my-stations/${stationId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
           },
-        }
-      );
-      console.log("정류장 추가 성공:", response.data);
-      alert("정류장이 성공적으로 추가되었습니다!");
+        });
+        setLikedPositions((prev) => prev.filter((item) => item.stationName !== station));
+        alert("좋아요 취소")
+      } else {
+        const response = await axios.post(
+          "http://localhost:8080/my-stations",
+          { stationName: station },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        fetchLikedStops();
+        alert("좋아요")
+      }
     } catch (error) {
-      console.error("정류장 추가 실패:", error.response?.data || error.message);
-      alert("정류장 추가 중 오류가 발생했습니다.");
+      console.error("좋아요 처리 중 오류 발생:", error);
     }
   };
 
@@ -120,11 +164,9 @@ const HomeMap = () => {
     heartIcon.style.width = "17px";
     heartIcon.style.height = "17px";
 
-    heartIcon.onclick = async () => {
-      if (!isLiked) {
-        await handleAddStation(title); // 서버로 데이터 전송
-        setLikedPositions((prev) => [...prev, title]);
-      }
+    heartIcon.onclick = (e) => {
+      e.stopPropagation(); // 클릭 이벤트 전파 방지
+      toggleLike(title);
     };
 
     overlayContent.appendChild(heartIcon);
@@ -132,19 +174,13 @@ const HomeMap = () => {
     return overlayContent;
   };
 
-  const initializeMap = () => {
-    const mapContainer = document.getElementById("map");
-    if (!mapContainer) {
-      console.error("지도 컨테이너를 찾을 수 없습니다.");
-      return;
-    }
+  const initializeMap = (likedPositions) => {
+    if (!map) return;
 
     const mapOption = {
       center: new window.kakao.maps.LatLng(37.566535, 126.9779692),
       level: 8,
     };
-
-    const map = new window.kakao.maps.Map(mapContainer, mapOption);
 
     const positions = [
       { title: "도봉산", latlng: new window.kakao.maps.LatLng(37.689535, 127.046489) },
@@ -201,9 +237,11 @@ const HomeMap = () => {
     ];
 
 
-    const newOverlays = {}; // Temporary storage for overlays
+    overlays.forEach((overlay) => overlay.setMap(null));
+    const newOverlays = [];
 
     positions.forEach((pos) => {
+      const isLiked = likedPositions.some((item) => item.stationName === pos.title);
       const marker = new window.kakao.maps.Marker({
         map: map,
         position: pos.latlng,
@@ -211,24 +249,27 @@ const HomeMap = () => {
       });
 
       const customOverlay = new window.kakao.maps.CustomOverlay({
-        content: createOverlayContent(pos.title, likedPositions.includes(pos.title)),
+        content: createOverlayContent(pos.title, isLiked),
         position: pos.latlng,
         yAnchor: 1,
       });
 
-      newOverlays[pos.title] = customOverlay;
+      // customOverlay.title = pos.title;
+      newOverlays.push(customOverlay);
 
       window.kakao.maps.event.addListener(marker, "click", () => {
+        newOverlays.forEach((overlay) => overlay.setMap(null));
         customOverlay.setMap(map);
         setCurrentLocation(pos.title);
       });
     });
 
-    setOverlays(newOverlays); // Store overlays in state
+    setOverlays(newOverlays);
   };
 
   const handleScrollBar = () => {
     setClickScrollBar(!clickScrollBar);
+    fetchLikedStops();
   };
 
   return (

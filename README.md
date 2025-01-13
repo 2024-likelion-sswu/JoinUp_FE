@@ -1,4 +1,4 @@
-<img width="100" src="JoinUp_FE/fe/src/assets/images/Logo/JoinUp_Full_Logo.png">
+<img width="150" src="JoinUp_FE/fe/src/assets/images/Logo/JoinUp_Full_Logo.png">
 
 
 # JoinUp

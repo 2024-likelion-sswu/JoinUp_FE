@@ -14,7 +14,7 @@ const AddPost = () => {
     const [image, setImage] = useState(null); // 파일 상태
 
     const handleMovePost = () => {
-        navigate('/post');
+        navigate('/community/post');
     };
 
     const handleImageChange = (e) => {

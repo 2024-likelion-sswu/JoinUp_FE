@@ -4,16 +4,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
     .CommunityHd {
         width: 100%;
         height: 8%;
         display: flex;
+
         .BackBtnImg {
             width: 8px;
             height: 16px;
             margin-left: 4%;
             margin-top: 6%;
         }
+
         .CommunityTitle {
             margin-left: 37%;
             margin-top: 6%;
@@ -29,11 +32,16 @@
         display: flex;
         gap: 17px;
         flex-wrap: nowrap;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
         .Post {
             width: 340px;
             height: 149px;
-            padding-left : 8px;
-            padding-top : 20px;
+            padding-left: 8px;
+            padding-top: 20px;
             border-radius: 10px;
             background: rgba(176, 151, 255, 0.15);
             box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.08);
@@ -42,19 +50,23 @@
             .PostProfileBox {
                 display: flex;
                 padding-left: 14px;
+
                 .PostProfile {
                     display: flex;
+
                     .PostProfileImg {
                         width: 63px;
                         height: 63px;
                         background-color: #fff;
                         border-radius: 50%;
                     }
+
                     .PostProfileLable {
                         margin-left: 8px;
                         margin-top: 12px;
                     }
                 }
+
                 .PostMin {
                     color: #000;
                     font-size: 13px;
@@ -63,12 +75,13 @@
                     line-height: normal;
                     letter-spacing: -0.28px;
                     margin-left: 120px;
-                } 
+                }
             }
 
             .PostPart2 {
                 display: flex;
                 margin-left: 19px;
+
                 // 위치
                 .PostLocationBox {
                     .PostLocationLable {
@@ -78,8 +91,9 @@
                         font-weight: 500;
                         line-height: normal;
                         letter-spacing: -0.28px;
-                        margin-top : 12px;
+                        margin-top: 12px;
                     }
+
                     .PostLocation {
                         color: #333;
                         font-size: 13px;
@@ -87,13 +101,14 @@
                         font-weight: 400;
                         line-height: normal;
                         letter-spacing: -0.28px;
-                        margin-top : 7px;
+                        margin-top: 7px;
                     }
                 }
 
                 // 모집인원
                 .PostRecruitBox {
                     margin-left: 30px;
+
                     .PostRecruitLable {
                         color: #000;
                         font-size: 14px;
@@ -101,16 +116,19 @@
                         font-weight: 500;
                         line-height: normal;
                         letter-spacing: -0.28px;
-                        margin-top : 12px;
+                        margin-top: 12px;
                     }
+
                     .PostRecruitBox2 {
                         display: flex;
-                        margin-top : 7px;
+                        margin-top: 7px;
+
                         .PostRecruitBoxImg {
                             width: 10px;
                             height: 13.921px;
                             flex-shrink: 0;
                         }
+
                         .PostRecruitBoxText {
                             color: #333;
                             font-size: 13px;
@@ -118,12 +136,13 @@
                             font-weight: 400;
                             line-height: normal;
                             letter-spacing: -0.28px;
-                            margin-left : 3%;
+                            margin-left: 3%;
                         }
-                        
+
                     }
-        
+
                 }
+
                 .PostRecruitBoxButton {
                     width: 81px;
                     height: 53px;
@@ -137,19 +156,20 @@
                     font-weight: 400;
                     line-height: normal;
                     letter-spacing: -0.28px;
-                    margin-left : 16%;
+                    margin-left: 16%;
                     cursor: pointer;
                 }
             }
 
-            
-            
+
+
         }
     }
 
     .HotPostWrap {
         width: 100%;
         height: 180px;
+
         .HotHd {
             font-size: 18px;
             font-weight: 500;
@@ -157,10 +177,12 @@
             margin-bottom: 2%;
             margin-left: 5%;
         }
+
         .HotPostBox {
             background-color: #FAFAFA;
             width: 100%;
             padding: 4%;
+
             .HotPostingTitle {
                 color: #000;
                 font-size: 14px;
@@ -169,6 +191,7 @@
                 line-height: normal;
                 letter-spacing: -0.28px;
             }
+
             .HotPostingContent {
                 color: #333;
                 font-size: 13px;
@@ -176,7 +199,7 @@
                 font-weight: 400;
                 line-height: normal;
                 letter-spacing: -0.28px;
-                margin-top : 5px;
+                margin-top: 5px;
             }
         }
     }
@@ -204,22 +227,25 @@
         flex-direction: column;
         margin-top: 11px;
         z-index: -1;
-        overflow-y :auto;
+        overflow-y: auto;
 
         &::-webkit-scrollbar {
             display: none;
-            }
+        }
+
         .Notice {
             width: 340px;
             height: 62px;
             display: flex;
             align-items: center;
+
             .NoticeImg {
                 width: 19px;
                 height: 12px;
                 flex-shrink: 0;
                 margin-left: 23px;
             }
+
             .NoticeTitle {
                 width: 200px;
                 color: #333;
@@ -230,6 +256,7 @@
                 letter-spacing: -0.28px;
                 margin-left: 14px;
             }
+
             .NoticeButton {
                 width: 55px;
                 height: 20px;
@@ -245,8 +272,9 @@
                 letter-spacing: -0.28px;
                 cursor: pointer;
             }
-            
+
         }
+
         .Line {
             width: 345px;
             height: 1px;

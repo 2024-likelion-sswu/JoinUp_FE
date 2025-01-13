@@ -13,7 +13,7 @@ const Community_Notice = () => {
 
     // 클릭 시 호출되는 함수
     const handleClick = (title, content) => {
-        navigate(`/post?title=${encodeURIComponent(title)}&content=${encodeURIComponent(content)}`);
+        navigate(`/community/post?title=${encodeURIComponent(title)}&content=${encodeURIComponent(content)}`);
     };
 
     return (

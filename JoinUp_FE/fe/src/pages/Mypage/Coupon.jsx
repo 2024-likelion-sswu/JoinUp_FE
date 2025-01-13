@@ -1,18 +1,15 @@
 import React from "react";
 import "../../assets/scss/section/MyPage/coupon.scss";
+import { Link } from 'react-router-dom'
 
 const Coupon = () => {
-    const handleBack = () => {
-        console.log("뒤로가기 버튼 클릭됨");
-        // 필요에 따라 뒤로가기 로직 추가 (예: history.goBack() 등)
-    };
     return (
         <div className='container'>
             <div className="coupon-container">
                 <div className="coupon-header">
-                    <span className="back-icon" onClick={handleBack}>
-                        &lt; {/* '<' 아이콘 */}
-                    </span>
+                        <Link className="back-icon" to='/mypage'>
+                            &lt; {/* '<' 아이콘 */}
+                        </Link>
                     <span>쿠폰함</span>
                 </div>
                 <div className="coupon-list">

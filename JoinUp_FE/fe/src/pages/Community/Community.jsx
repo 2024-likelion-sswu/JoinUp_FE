@@ -12,6 +12,7 @@ const Community = () => {
                     <img src={BackBtn} className='BackBtnImg'></img>
                     <div className='CommunityTitle'>커뮤니티</div>
             </div>
+            <div className='MyLineTitle'>나의 줄서기</div>
             <Community_Post />
             <Community_Hot />
             <Community_Notice />

@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
     .CommunityHd {
         width: 100%;
         height: 8%;
@@ -23,10 +22,18 @@
             font-weight: bold;
         }
     }
+    .MyLineTitle {
+        width: 363px;
+        margin-top: 35px;
+        margin-bottom: 8px;
+        margin-left: 16px;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 500;
+    }
 
     .PostWrap {
         width: 340px;
-        margin-top: 5%;
         height: 220px;
         overflow-x: auto;
         display: flex;
@@ -175,7 +182,7 @@
             font-weight: 500;
             margin-top: 11px;
             margin-bottom: 2%;
-            margin-left: 5%;
+            margin-left: 12px;
         }
 
         .HotPostBox {
@@ -213,7 +220,6 @@
         font-weight: 500;
         line-height: normal;
         letter-spacing: -0.28px;
-        margin-left: 10%;
     }
 
     .NoticeWrap {

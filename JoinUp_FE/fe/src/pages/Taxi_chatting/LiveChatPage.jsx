@@ -32,7 +32,6 @@ const LiveChatPage = () => {
             try {
                 const chatRoomsCollection = collection(db, "chatRooms");
     
-                // Firestore의 실시간 업데이트를 감지
                 const unsubscribe = onSnapshot(chatRoomsCollection, (snapshot) => {
                     const allRooms = snapshot.docs.map((doc) => ({
                         id: doc.id,
@@ -42,14 +41,13 @@ const LiveChatPage = () => {
                     const matchingRoom = allRooms.find((room) => room.roomId === chatRoomId);
     
                     if (matchingRoom) {
-                        setChatUserInfo(matchingRoom.chatUser); // chatUser 설정
-                        setChatPartnerInfo(matchingRoom.chatPartner); // chatPartner 설정
+                        setChatUserInfo(matchingRoom.chatUser);
+                        setChatPartnerInfo(matchingRoom.chatPartner);
                     } else {
                         console.error("해당 채팅방 정보를 찾을 수 없습니다.");
                     }
                 });
     
-                // 컴포넌트가 언마운트될 때 실시간 업데이트 해제
                 return () => unsubscribe();
             } catch (error) {
                 console.error("채팅방 정보 가져오기 실패:", error);
@@ -70,11 +68,9 @@ const LiveChatPage = () => {
         };
 
         try {
-            // 메시지 추가
             const docRef = await addDoc(chatCollection, messageData);
 
-            // `chatRooms` 컬렉션의 `lastMessage` 업데이트
-            const chatRoomRef = doc(db, "chatRooms", chatRoomId); // roomId는 현재 채팅방의 ID
+            const chatRoomRef = doc(db, "chatRooms", chatRoomId);
             await updateDoc(chatRoomRef, {
                 lastMessage: newMessage,
                 timestamp: messageData.timestamp,

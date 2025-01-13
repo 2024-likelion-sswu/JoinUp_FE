@@ -46,7 +46,7 @@ const HomeMap = () => {
     const script = document.createElement("script");
     script.type = "text/javascript";
     script.src =
-      "https://dapi.kakao.com/v2/maps/sdk.js?appkey=21c21b1e11eb27d9f4ed10a541965751&autoload=false&libraries=services,clusterer,drawing";
+      "https://dapi.kakao.com/v2/maps/sdk.js?appkey=d929c6a617d8ba493c5783ab1f3af7b5&autoload=false&libraries=services,clusterer,drawing";
     script.async = true;
     document.head.appendChild(script);
 
@@ -90,13 +90,13 @@ const HomeMap = () => {
 
       if (isLiked) {
         const stationId = likedPositions.find((item) => item.stationName === station).id;
-        await axios.delete(`http://localhost:8080/my-stations/${stationId}`, {
+        const response = await axios.delete(`http://localhost:8080/my-stations/${stationId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         setLikedPositions((prev) => prev.filter((item) => item.stationName !== station));
-        alert("좋아요 취소")
+        alert(response.data.message);
       } else {
         const response = await axios.post(
           "http://localhost:8080/my-stations",
@@ -109,7 +109,8 @@ const HomeMap = () => {
           }
         );
         fetchLikedStops();
-        alert("좋아요")
+        alert(response.data.message);
+
       }
     } catch (error) {
       console.error("좋아요 처리 중 오류 발생:", error);

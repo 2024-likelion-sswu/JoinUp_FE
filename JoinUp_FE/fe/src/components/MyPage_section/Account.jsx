@@ -7,7 +7,7 @@ const Account = ({onClick}) => {
     const navigate = useNavigate();
 
     const handleMoveEditPage = () => {
-        navigate('/myedit')
+        navigate('/mypage/myedit')
     }
 
     const [user, setUser] = useState([]);
@@ -21,7 +21,7 @@ const Account = ({onClick}) => {
                     'Authorization': `Bearer ${token}`
                 }
             });
-            setUser(response.data.data)
+            setUser(response.data.data);
         } catch (error) {
           console.error("Failed to fetch user info:", error);
         }

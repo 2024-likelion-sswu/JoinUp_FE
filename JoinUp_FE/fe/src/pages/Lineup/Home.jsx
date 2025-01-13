@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "../../assets/scss/section/Lineup/home.scss";
 import { FaChevronRight, FaPlus, FaHeart, FaRegHeart } from "react-icons/fa";
@@ -17,7 +17,7 @@ const Home = ({ onClick }) => {
     const location = useLocation();
     const { stationName } = location.state || {};
 
-    
+
     const userEmail = localStorage.getItem("userEmail");
 
     const createOrGetChatRoom = async (userEmail, otherUserEmail, roomId, chatInfo) => {
@@ -219,7 +219,7 @@ const Home = ({ onClick }) => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-    
+
                 // 서버에서 현재 사용자가 참여 중인 줄서기 ID 목록 반환
                 const joinedQueueIds = response.data.data.map((item) => item.recruitPostId);
                 setJoinedQueues(joinedQueueIds); // 상태에 설정
@@ -227,7 +227,7 @@ const Home = ({ onClick }) => {
                 console.error("참여 중인 줄서기 정보를 가져오는 중 오류 발생:", error);
             }
         };
-    
+
         fetchJoinedQueues();
     }, []);
     // 택시 정류장 좋아요 처리
@@ -237,13 +237,14 @@ const Home = ({ onClick }) => {
         try {
             if (likedStops.some((s) => s.id === station.id)) {
                 // 좋아요 취소
-                await axios.delete(`http://localhost:8080/my-stations/${station.id}`, {
+                const response = await axios.delete(`http://localhost:8080/my-stations/${station.id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
 
                 setLikedStops(likedStops.filter((s) => s.id !== station.id));
+                alert(response.data.message);
             } else {
                 // 좋아요 추가
                 const response = await axios.post(
@@ -257,6 +258,7 @@ const Home = ({ onClick }) => {
                 );
 
                 setLikedStops([...likedStops, response.data]);
+                alert(response.data.message);
             }
         } catch (error) {
             console.error("좋아요 처리 중 오류 발생:", error);
@@ -276,13 +278,13 @@ const Home = ({ onClick }) => {
     };
 
 
-      
+
     return (
         <div className="home-container">
             <section className="queue-section">
                 <div className="section-header" onClick={onClick}>
                     <h2>줄서기</h2>
-                    <FaPlus className="add-icon" onClick={() => navigate("/lineup_plus")} />
+                    <FaPlus className="add-icon" onClick={() => navigate("/home/lineup_plus")} />
                 </div>
                 <div className="queue-list">
                     {queueData.length > 0 ? (
@@ -299,7 +301,7 @@ const Home = ({ onClick }) => {
                                     >
                                         {item.currentMembers >= item.maxMembers ? "모집완료" : "모집중"}
                                     </span>
-                                    <p className="date">{formatTimeDifference(item.expiresAt)}</p>
+                                    <p className="date">마감 {formatTimeDifference(item.expiresAt)}</p>
                                 </div>
                                 <div className="role-wrapper">
                                     <div className="circle"></div>

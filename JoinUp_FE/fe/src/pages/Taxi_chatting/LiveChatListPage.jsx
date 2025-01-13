@@ -20,7 +20,6 @@ const LiveChatListPage = () => {
 
         const fetchUserProfileAndUpdateChatRooms = async () => {
             try {
-                // 사용자 프로필 가져오기
                 const response = await axios.get('http://localhost:8080/user/profile', {
                     headers: {
                         Authorization: `Bearer ${authToken}`,
@@ -30,7 +29,6 @@ const LiveChatListPage = () => {
                 if (response.data.success) {
                     const { email, name, profileImageUrl } = response.data.data;
 
-                    // Firestore에서 사용자가 포함된 채팅방 가져오기
                     const chatRoomsCollection = collection(db, "chatRooms");
                     const q = query(
                         chatRoomsCollection,
@@ -43,7 +41,6 @@ const LiveChatListPage = () => {
                         const chatRoomData = docSnapshot.data();
                         const chatRoomRef = doc(db, "chatRooms", docSnapshot.id);
 
-                        // 현재 사용자 정보 업데이트가 필요한지 확인
                         if (
                             chatRoomData.chatUser?.email === currentUserEmail &&
                             (chatRoomData.chatUser.name !== name ||
@@ -71,7 +68,6 @@ const LiveChatListPage = () => {
                         }
                     });
 
-                    // 모든 업데이트 실행
                     await Promise.all(updates);
                 } else {
                     console.error("사용자 프로필을 가져오지 못했습니다:", response.data.message);
@@ -90,11 +86,10 @@ const LiveChatListPage = () => {
             return;
         }
 
-        // Firestore에서 chatRooms 컬렉션 가져오기
         const chatRoomsCollection = collection(db, "chatRooms");
         const q = query(
             chatRoomsCollection,
-            where("participants", "array-contains", currentUserEmail), // 본인이 포함된 채팅방만 필터링
+            where("participants", "array-contains", currentUserEmail),
             orderBy("timestamp", "desc")
         );
         const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -105,7 +100,7 @@ const LiveChatListPage = () => {
             setChatRooms(rooms);
         });
 
-        return () => unsubscribe(); // Cleanup listener
+        return () => unsubscribe();
     }, [currentUserEmail]);
 
     const handleRoomClick = (roomId) => {

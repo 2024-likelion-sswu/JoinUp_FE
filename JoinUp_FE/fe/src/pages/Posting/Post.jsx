@@ -18,7 +18,7 @@ const Post = () => {
         navigate('/community/addpost')
     }
   return (
-    <div className='PostContainer'>
+    <div className='PostContainer container'>
         <div className='PostHd'>
             <img src={BackBtn} className='PostBackBtn'></img>
             <div className='PostHdTxt'>2호선 게시판</div>

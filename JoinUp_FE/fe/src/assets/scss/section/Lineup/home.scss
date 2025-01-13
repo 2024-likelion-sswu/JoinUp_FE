@@ -312,15 +312,34 @@
     }
 
     .taxi-section {
+
+        .go-to-button {
+            background-color: #F0F0F0;
+            color: 000000;
+            border: none;
+            padding: 5px 10px;
+            margin-left: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 10px;
+          }
+          
+          
         h2 {
             font-size: 20px;
             margin-bottom: 15px;
+            margin-left: 5px;
+            font-weight: 600;
         }
 
         .taxi-list {
             list-style: none;
             padding: 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
+
+    
             .taxi-item {
                 display: flex;
                 align-items: center;
@@ -328,7 +347,7 @@
                 background: #fff;
                 padding: 10px 15px;
                 border-radius: 10px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                border-bottom: 1px solid #21212114;
                 margin-bottom: 10px;
 
                 .heart-button {
@@ -351,7 +370,7 @@
                 span {
                     flex-grow: 1;
                     font-size: 14px;
-                    font-weight: bold;
+                    font-weight: 400;
                     margin-left: 10px;
                 }
 

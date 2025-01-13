@@ -3,8 +3,9 @@ import "../../assets/scss/section/Lineup/home_map.scss";
 import { FaBell } from "react-icons/fa";
 import { RiSendPlaneLine } from "react-icons/ri";
 import Home from "./Home";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom"; // 올바른 import
 import axios from "axios";
+import markerImageSrc from "../../assets/images/지도 마커.png";
 
 const HomeMap = () => {
   const [currentLocation, setCurrentLocation] = useState("서울 중심");
@@ -13,6 +14,7 @@ const HomeMap = () => {
   const navigate = useNavigate();
   const [overlays, setOverlays] = useState([]); // Store overlays for dynamic updates
   const [map, setMap] = useState(null);
+
 
   const fetchLikedStops = async () => {
     try {
@@ -240,12 +242,16 @@ const HomeMap = () => {
     overlays.forEach((overlay) => overlay.setMap(null));
     const newOverlays = [];
 
+    const imageSize = new window.kakao.maps.Size(24, 28); // 마커 크기 설정
+    const markerImage = new window.kakao.maps.MarkerImage(markerImageSrc, imageSize);
+    
     positions.forEach((pos) => {
       const isLiked = likedPositions.some((item) => item.stationName === pos.title);
       const marker = new window.kakao.maps.Marker({
         map: map,
         position: pos.latlng,
         title: pos.title,
+        image: markerImage,
       });
 
       const customOverlay = new window.kakao.maps.CustomOverlay({
@@ -267,10 +273,12 @@ const HomeMap = () => {
     setOverlays(newOverlays);
   };
 
+
   const handleScrollBar = () => {
     setClickScrollBar(!clickScrollBar);
     fetchLikedStops();
   };
+
 
   return (
     <div className="home-map-container container">

@@ -28,7 +28,7 @@ const Feed = () => {
   };
 
   return (
-    <div className="FeedContainer">
+    <div className="FeedContainer" style={{height: "90vh"}}>
       <div className="FeedHd">
         <img
           src={BackBtn}

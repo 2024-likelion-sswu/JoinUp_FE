@@ -37,7 +37,7 @@ const Pay = () => {
                 <div className='Kakao2'>충전하기</div>
             </div>
             
-            <Link className='CouponBox' to="/Coupon">
+            <Link className='CouponBox' to="/mypage/Coupon">
                 <div className='CpBox1'>
                     <img className='CpBImg' src={CouponBox}></img>
                 </div>

@@ -32,13 +32,13 @@ function App() {
           <Route path="/home" element={<Home_map />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/coupon" element={<Coupon />} />
-          <Route path="/list" element={<List />} />
-          <Route path="/lineup_plus" element={<LineupPlus />} />
+          <Route path="/mypage/coupon" element={<Coupon />} />
+          <Route path="/mypage/list" element={<List />} />
+          <Route path="/home/lineup_plus" element={<LineupPlus />} />
           <Route path="/livechat" element={<LiveChatListPage />} />
           <Route path="/livechat/:chatRoomId" element={<LiveChatPage />} />
           <Route path="/mypage" element={<MyPage/> } />
-          <Route path="/myedit" element={<MyEdit/>}/>
+          <Route path="/mypage/myedit" element={<MyEdit/>}/>
           <Route path="/community/post" element={<Post/>}/>
           <Route path="/community/addpost" element={<AddPost/>}/>
           <Route path="/community" element={<Community/>}/>

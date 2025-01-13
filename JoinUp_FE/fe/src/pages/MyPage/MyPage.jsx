@@ -26,7 +26,7 @@ const MyPage = () => {
                 <div className='Line'></div>
                 <Pay />
                 <div className='Line'></div>
-                <Link to="/List" className='PayList'>
+                <Link to="/mypage/List" className='PayList'>
                     <div>결제내역 보기</div>
                     <img className='PayList1' src={BackBtn}></img>
                 </Link>

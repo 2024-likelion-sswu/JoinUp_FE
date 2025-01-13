@@ -30,14 +30,14 @@ const Signup1 = ({ goToSignupNextStep, currentSignupStep, totalSignupSteps }) =>
     };
 
     const handleNext = () => {
-        // if (!email) {
-        //     alert("이메일을 입력해주세요.");
-        //     return;
-        // }
-        // if (!success) {
-        //     alert("이메일 인증을 완료해주세요.");
-        //     return;
-        // }
+        if (!email) {
+            alert("이메일을 입력해주세요.");
+            return;
+        }
+        if (!success) {
+            alert("이메일 인증을 완료해주세요.");
+            return;
+        }
         goToSignupNextStep({email});
     };
 

@@ -2,6 +2,7 @@ import React from 'react'
 import '../../assets/scss/section/MyPage/mypage.scss'
 import PayImg from '../../assets/images/PayImg.svg'
 import CouponBox from '../../assets/images/CouponBox.svg'
+import { Link } from 'react-router-dom'
 
 const Pay = () => {
   return (
@@ -35,14 +36,15 @@ const Pay = () => {
                 <div className='Line'></div>
                 <div className='Kakao2'>충전하기</div>
             </div>
-
-            <div className='CouponBox'>
+            
+            <Link className='CouponBox' to="/Coupon">
                 <div className='CpBox1'>
                     <img className='CpBImg' src={CouponBox}></img>
                 </div>
                 <div className='Line'></div>
                 <div className='CpBox2'>쿠폰함</div>
-            </div>
+            </Link>
+            
         </div>
     </div>
   )

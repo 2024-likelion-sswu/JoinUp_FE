@@ -1,13 +1,12 @@
 import React from 'react'
 import Ht from '../../assets/images/Ht.svg'
 import CommentBtn from '../../assets/images/CommentBtn.svg'
-import NOFILE from '../../assets/images/Camera.svg'
-
+import Img9 from '../../assets/images/Img9.png'
 const PostList = ({title, content, like, comment}) => {
   return (
     <div className='PostListContainer'>
         <div className='PostBox'>
-            <div className='PostImg'><img src={NOFILE}></img></div>
+            <div className='PostImg'><img src={Img9}></img></div>
             <div className='PostDetail'>
                 <div className='PostTitle'>{title}</div>
                 <div className='Posting'>{content}</div>
@@ -22,5 +21,4 @@ const PostList = ({title, content, like, comment}) => {
     </div>
   )
 }
-
 export default PostList

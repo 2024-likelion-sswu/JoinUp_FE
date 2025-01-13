@@ -1,18 +1,15 @@
 import React from 'react'
 import "../../assets/scss/section/MyPage/list.scss";
+import { Link } from 'react-router-dom'
 
 const List = () => {
-    const handleBack = () => {
-        console.log("뒤로가기 버튼 클릭됨");
-        // 필요에 따라 뒤로가기 로직 추가 (예: history.goBack() 등)
-    };
     return (
         <div className='container'>
             <div className="list-container">
                 <div className="list-header">
-                    <span className="back-icon" onClick={handleBack}>
-                        &lt; {/* '<' 아이콘 */}
-                    </span>
+                        <Link className="back-icon" to='/mypage'>
+                            &lt; {/* '<' 아이콘 */}
+                        </Link>
                     <span>결제내역</span>
                 </div>
                 <div className="list-list">

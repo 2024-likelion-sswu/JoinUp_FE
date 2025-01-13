@@ -4,68 +4,93 @@
     display: flex;
     flex-direction: column;
     .FeedHd {
-        width: 100%;
-        height: 8%;
-        display: flex;
-        .PostBackBtn {
-            width: 8px;
-            height: 16px;
-            margin-left: 4%;
-            margin-top: 6%;
-        }
-        .PostHdTxt {
-            margin-left: 37%;
-            margin-top: 6%;
-            font-weight: bold;
-        }
+      width: 100%;
+      height: 8%;
+      display: flex;
+      .PostBackBtn {
+        width: 8px;
+        height: 16px;
+        margin-left: 4%;
+        margin-top: 6%;
+      }
+      .PostHdTxt {
+        margin-left: 130px;
+        margin-top: 6%;
+        font-weight: bold;
+      }
     }
     .FeedTitleBox {
-        
-        .FeedTitle {
-            text-align: center;
-            font-size: 16px;
-        }
+      margin-top: 20px;
+      .FeedTitle {
+        text-align: start;
+        font-size: 16px;
+        margin-left: 20px;
+      }
     }
     .Line {
-        width: 100%;
-        height: 1px; 
-        margin-top: 10px; 
-        background-color: rgba(33, 33, 33, 0.08);
+      width: 100%;
+      height: 1px;
+      margin-top: 10px;
+      background-color: rgba(33, 33, 33, 0.08);
     }
+    .FeedContentBox {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .FeedContentTxt {
+        margin-top: 28px;
+        margin-bottom: 23px;
+        text-align: start;
+        width: 336px;
+      }
+      .FeedContentImg {
+        .FeedImgbox {
+          width: 336px;
+          height: 186px;
+        }
+      }
+    }
+  
     .FeedReactBox {
+      display: flex;
+      margin-top: 16px;
+      margin-bottom: 20px;
+      margin-left: 16px;
+      .FeedLikeBtn {
+        width: 19px;
+        height: 16px;
         display: flex;
-        margin-top: 16px;
-        margin-bottom: 20px;
-        margin-left: 16px;
-        .FeedLikeBtn {
-            width: 19px;
-            height: 16px;
-            display: flex;
-            margin-right: 16px;
-        }
-        .FeedCommentBtn {
-            width: 19px;
-            height: 16px;
-        }
+        margin-right: 16px;
+        align-items: center;
+        gap: 4px;
+      }
+      .FeedCommentBtn {
+        width: 19px;
+        height: 16px;
+        display: flex;
+        align-items: center;
+      }
     }
-
+  
     .FeedCommentInput {
-        position: relative;
-        text-align: center;
-        .FeedCommentInputBox {
-            width: 361px;
-            height: 48px;
-            padding: 3%;
-            border-radius: 12px;
-            border: 0.5px solid #B2B2B4;
-            background: #FFF;
-        }
-        .FeedCommentImg {
-            width: 19px;
-            height: 19px;
-            position: absolute;
-            bottom: 30%;
-            right: 5%;
-        }
+      position: relative;
+      text-align: center;
+      .FeedCommentInputBox {
+        width: 361px;
+        height: 48px;
+        padding: 3%;
+        border-radius: 12px;
+        border: 0.5px solid #b2b2b4;
+        background: #fff;
+      }
+      .FeedCommentImg {
+        width: 19px;
+        height: 19px;
+        position: absolute;
+        bottom: 30%;
+        right: 5%;
+      }
     }
-}
+  }
+  

@@ -131,35 +131,32 @@ const Community_Post = () => {
 
   return (
     <div className='PostWrap'>
-        {/* myPost가 배열이므로 map을 사용하여 항목을 출력 */}
-        {myPost?.map((post, index) => (
-            <div className='Post'>
+        <div className='Post'>
                 <div className='PostProfileBox'>
                     <div className='PostProfile'>
                         <div className='PostProfileImg'><img src={UserIcon}></img></div>
                         <div className='PostProfileLable'>
-                            <div className='PostProfileName'>{post.title}</div>
-                            <div className='PostProfileEng'>{post.writerName}</div>
+                            <div className='PostProfileName'>택시운전사</div>
+                            <div className='PostProfileEng'>taxi_driver</div>
                         </div>
                     </div>
-                    <div className='PostMin'>{timeAgo(post?.createdAt)}</div>
+                    <div className='PostMin'>3분전</div>
                 </div>
                 <div className='PostPart2'>
                     <div className='PostLocationBox'>
                         <div className='PostLocationLable'>위치</div>
-                        <div className='PostLocation'>{post?.location}</div>
+                        <div className='PostLocation'>왕십리역 9번 출구</div>
                     </div>
                     <div className='PostRecruitBox'>
                         <div className='PostRecruitLable'>모집인원</div>
                         <div className='PostRecruitBox2'>
                             <img className='PostRecruitBoxImg' src={GroupImg} alt="Group" />
-                            <p className='PostRecruitBoxText'>{post?.currentMembers}/{post?.maxMembers}</p>
+                            <p className='PostRecruitBoxText'>1/5</p>
                         </div>
                     </div>
-                    <button className='PostRecruitBoxButton' onClick={() => handleStartChat(post.recruitPostId)}>채팅하기</button>
+                    <button className='PostRecruitBoxButton' onClick={() => handleStartChat(1)}>채팅하기</button>
                 </div>
-            </div>
-            ))}
+        </div>
     </div>
   );
 }

@@ -15,6 +15,7 @@ import Community from "./pages/Community/Community";
 import LiveChatListPage from "./pages/Taxi_chatting/LiveChatListPage";
 import LiveChatPage from "./pages/Taxi_chatting/LiveChatPage";
 import LandingPage from "./pages/Landing/LandingPage";
+import Feed from './components/Post_section/Feed'
 
 function App() {
   const AppContent = () => {
@@ -41,6 +42,7 @@ function App() {
           <Route path="/community/post" element={<Post/>}/>
           <Route path="/community/addpost" element={<AddPost/>}/>
           <Route path="/community" element={<Community/>}/>
+          <Route path="/feed" element={<Feed/>}/>
         </Routes>
         {shouldShowFooter && <Footer />}
         </>

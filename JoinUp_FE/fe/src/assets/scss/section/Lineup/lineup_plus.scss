@@ -8,7 +8,6 @@
       align-items: center;
       font-size: 18px;
       font-weight: bold;
-      margin-bottom: 16px;
       margin-top: 10px;
       position: relative;
   
@@ -34,24 +33,22 @@
     .form {
       .form-group {
         position: relative;
-        margin-top: 44px;
-        margin-left: 10px;
-        width: 328px;
+        margin-top: 34px;
+        width: 318px;
   
         
         label {
           display: block;
           font-size: 16px;
           margin-bottom: 8px;
-          margin-left: 3px;
           color: #333;
+          margin-top: 11px;
         }
   
         input,
         textarea {
           width: 100%;
           padding: 8px;
-          padding-right: 40px; /* 아이콘을 위한 공간 */
           font-size: 14px;
           border: 1px solid #B2B2B4;
           border-radius: 10px;
@@ -66,7 +63,6 @@
         textarea {
           resize: none;
           height: 130px;
-          padding-right: 40px; /* 카메라 아이콘 공간 확보 */
         }
   
         .camera-icon {
@@ -92,7 +88,6 @@
   
           input {
             flex: 1;
-            padding-right: 40px; /* 돋보기 아이콘 공간 */
           }
   
           .search-button {
@@ -101,8 +96,12 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 18px;
-            color: #8F6CFF;
+            color: #a2a2a2;
             cursor: pointer;
+
+            &:hover{
+              color: #8F6CFF
+            }
           }
         }
   
@@ -114,7 +113,8 @@
         border: 1px solid #ddd;
         padding: 10px;
         border-radius: 5px;
-        margin-top: 8px;
+        margin-top: 15px;
+        cursor: pointer;
       }
       
       .time-select {
@@ -132,7 +132,7 @@
         margin: 0;
       }
       .upload-button {
-        width: 328px;
+        width: 318px;
         height: 48px;
         padding: 10px 16px;
         font-size: 16px;
@@ -142,9 +142,7 @@
         border: none;
         border-radius: 12px;
         cursor: pointer;
-        margin-left: 10px;
-        margin-top: 20px;
-        margin-bottom: 15px;
+        margin-top: 44px;
   
         &:hover {
           background: #8F6CFF;

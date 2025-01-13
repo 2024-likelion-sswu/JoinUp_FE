@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import axios from "axios";
 import "../../assets/scss/section/Lineup/home.scss";
 import { FaChevronRight, FaPlus, FaHeart, FaRegHeart } from "react-icons/fa";
@@ -14,7 +14,10 @@ const Home = ({ onClick }) => {
     const [joinedQueues, setJoinedQueues] = useState([]); // 참여한 줄서기
     const queueListRef = useRef(null);
     const navigate = useNavigate();
+    const location = useLocation();
+    const { stationName } = location.state || {};
 
+    
     const userEmail = localStorage.getItem("userEmail");
 
     const createOrGetChatRoom = async (userEmail, otherUserEmail, roomId, chatInfo) => {
@@ -207,7 +210,26 @@ const Home = ({ onClick }) => {
             console.error("줄서기 처리 중 오류 발생:", error);
         }
     };
-
+    useEffect(() => {
+        const fetchJoinedQueues = async () => {
+            try {
+                const token = localStorage.getItem("authToken");
+                const response = await axios.get("http://localhost:8080/recruit-posts/joined", {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                });
+    
+                // 서버에서 현재 사용자가 참여 중인 줄서기 ID 목록 반환
+                const joinedQueueIds = response.data.data.map((item) => item.recruitPostId);
+                setJoinedQueues(joinedQueueIds); // 상태에 설정
+            } catch (error) {
+                console.error("참여 중인 줄서기 정보를 가져오는 중 오류 발생:", error);
+            }
+        };
+    
+        fetchJoinedQueues();
+    }, []);
     // 택시 정류장 좋아요 처리
     const toggleLike = async (station) => {
         const token = localStorage.getItem("authToken");
@@ -253,6 +275,8 @@ const Home = ({ onClick }) => {
         setActivePage(currentPage);
     };
 
+
+      
     return (
         <div className="home-container">
             <section className="queue-section">
@@ -315,7 +339,7 @@ const Home = ({ onClick }) => {
                             </div>
                         ))
                     ) : (
-                        <p>줄서기 데이터가 없습니다.</p>
+                        <p>현재 줄서는 곳이 없습니다.</p>
                     )}
                 </div>
             </section>
@@ -333,6 +357,11 @@ const Home = ({ onClick }) => {
                                 )}
                             </button>
                             <span>{station.stationName}</span>
+                            <button
+                                className="go-to-button"
+                            >
+                                보러가기
+                            </button>
                         </li>
                     ))}
                 </ul>

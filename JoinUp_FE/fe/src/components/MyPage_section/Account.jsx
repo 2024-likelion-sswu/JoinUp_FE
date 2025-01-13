@@ -3,7 +3,7 @@ import axios from 'axios'
 import UserIcon from '../../assets/images/UserIcon.png'
 import { useNavigate } from 'react-router-dom'
 
-const Account = () => {
+const Account = ({onClick}) => {
     const navigate = useNavigate();
 
     const handleMoveEditPage = () => {
@@ -36,7 +36,7 @@ const Account = () => {
             <div className='UserEmail'>{user.email}</div>
             <div className='UserInfoBtn'>
                 <button className='UserInfoEditer' onClick={() => handleMoveEditPage()}>회원정보 수정</button>
-                <button className='UserInfoLogout'>로그아웃</button>
+                <button className='UserInfoLogout' onClick={onClick}>로그아웃</button>
             </div>
         </div>
     </div>

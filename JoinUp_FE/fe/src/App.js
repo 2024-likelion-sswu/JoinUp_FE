@@ -38,8 +38,8 @@ function App() {
           <Route path="/livechat/:chatRoomId" element={<LiveChatPage />} />
           <Route path="/mypage" element={<MyPage/> } />
           <Route path="/myedit" element={<MyEdit/>}/>
-          <Route path="/post" element={<Post/>}/>
-          <Route path="/addpost" element={<AddPost/>}/>
+          <Route path="/community/post" element={<Post/>}/>
+          <Route path="/community/addpost" element={<AddPost/>}/>
           <Route path="/community" element={<Community/>}/>
         </Routes>
         {shouldShowFooter && <Footer />}
